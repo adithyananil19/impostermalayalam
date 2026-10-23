@@ -1,0 +1,26 @@
+.line {
+  border: none;
+  border-top: 1px solid var(--clr-border);
+  margin: var(--space-4) 0;
+}
+
+.labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--clr-border);
+}
+
+.text {
+  font-size: var(--text-xs);
+  color: var(--clr-text-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

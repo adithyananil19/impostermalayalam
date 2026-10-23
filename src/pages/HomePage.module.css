@@ -1,0 +1,52 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-12) 0 var(--space-8);
+}
+
+.logoWrap {
+  width: 72px;
+  height: 72px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoMark {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--clr-accent);
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--clr-text-primary);
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  color: var(--clr-text-secondary);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}

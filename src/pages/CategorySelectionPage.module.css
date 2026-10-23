@@ -1,0 +1,107 @@
+.intro {
+  padding: var(--space-6) 0 var(--space-4);
+}
+
+.heading {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.subRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.sub {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+}
+
+.bulkBtns {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.bulkBtn {
+  font-size: var(--text-sm);
+  color: var(--clr-accent);
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.bulkBtn:hover {
+  background: var(--clr-accent-subtle);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+}
+
+.catCard {
+  width: 100%;
+  text-align: left;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.catCard:hover {
+  background: var(--clr-surface-2);
+  border-color: #363b36;
+}
+
+.selected {
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-subtle);
+}
+
+.selected:hover {
+  background: rgba(198, 243, 106, 0.16);
+}
+
+.catTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.catName {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--clr-text-primary);
+}
+
+.catDesc {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: 1.4;
+}
+
+.checkmark {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 22px;
+  height: 22px;
+  background: var(--clr-accent);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #101110;
+}

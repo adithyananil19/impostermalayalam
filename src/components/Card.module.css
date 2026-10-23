@@ -1,0 +1,32 @@
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.clickable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.clickable:hover {
+  background: var(--clr-surface-2);
+  border-color: #363b36;
+}
+
+.clickable:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.selected {
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-subtle);
+}
+
+.selected:hover {
+  background: rgba(198, 243, 106, 0.16);
+  border-color: var(--clr-accent);
+}
