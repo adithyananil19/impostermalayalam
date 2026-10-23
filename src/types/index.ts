@@ -13,6 +13,7 @@ export interface WordEntry {
   id: string;
   word: string;
   hint: string;
+  relatedWord?: string;
   category: string;
   difficulty: Difficulty;
   tags?: string[];
@@ -87,6 +88,20 @@ export interface PlayerRole {
 export interface Vote {
   voterId: string;
   targetId: string;
+}
+
+export interface VoteTally {
+  targetId: string;
+  count: number;
+}
+
+export interface VoteResolution {
+  tallies: VoteTally[];
+  maxVotes: number;
+  isTie: boolean;
+  tiedPlayerIds: string[];
+  eliminatedPlayerId?: string;
+  imposterWon: boolean;
 }
 
 // ─── Game state machine ───────────────────────────────────────────────────────
