@@ -40,7 +40,7 @@ src/
 | 4 | Settings, custom words, localStorage | ✅ Done |
 | 5 | Complete word bank (248 entries) | ✅ Done |
 | 6 | PWA, offline, accessibility, final QA | ✅ Done |
-| 7 | Deployment and handoff | 🔲 Pending |
+| 7 | Deployment and handoff | ✅ Done |
 | 8 | Optional online multiplayer | 🔲 Pending |
 
 ## Naming conventions

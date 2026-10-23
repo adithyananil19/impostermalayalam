@@ -315,10 +315,58 @@ Created and expanded the complete authentic word bank with **248 original entrie
 
 ---
 
+## Phase 7 — Deployment and handoff ✅ COMPLETE
+
+**Completed:** 2026-10-24
+
+### What was done
+
+#### 1. Static Hosting & SPA Routing Configuration
+- **Cloudflare Pages / Netlify Redirects (`public/_redirects`)**:
+  - Added universal SPA routing redirect rule `/* /index.html 200` to guarantee direct URL navigation and reloads work seamlessly.
+- **Security & Caching Headers (`public/_headers`)**:
+  - Configured `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`.
+  - Service worker and manifest set to `Cache-Control: public, max-age=0, must-revalidate`.
+  - Static asset chunks set to `Cache-Control: public, max-age=31536000, immutable`.
+- **Vercel Configuration (`vercel.json`)**:
+  - Added build command `npm run build`, output directory `dist`, SPA rewrite rule `/(.*) -> /index.html`, and caching headers.
+- **Static Host / GitHub Pages Fallback (`public/404.html` & `index.html`)**:
+  - Added SPA fallback redirector script in `404.html` and receiver in `index.html` to decode path routes on hosts without native rewrite support.
+- **Automated GitHub Actions CI/CD (`.github/workflows/deploy.yml`)**:
+  - Workflow to run `typecheck`, `npm test`, and `npm run build`, uploading the `dist` artifact and deploying to GitHub Pages on every push to `main`.
+
+#### 2. Documentation Suite
+- **Created Comprehensive `README.md`**:
+  - Project overview, key features, mobile PWA benefits, Kerala cultural context.
+  - Setup instructions, prerequisites, local dev commands, build commands, test commands.
+  - Deployment step-by-step guides for Cloudflare Pages, Vercel, GitHub Pages, and Netlify.
+  - Complete custom word-pack JSON schema specification and known limitations.
+- **Updated `PRODUCT_SPEC.md`**:
+  - Fully synced to implemented design: `IMPOSTER.MALAYALAM.` branding, 3 imposter modes (`no_word`, `vague_hint`, `category_reveal`), 248 words across 11 categories, PWA architecture.
+- **Updated `IMPLEMENTATION_PLAN.md`**:
+  - Marked Phase 7 as Complete.
+- **Updated `TEST_PLAN.md`**:
+  - Documented all 100 tests across 6 suites with verification matrices.
+
+### Verified & Tested
+
+- `npm run typecheck` — ✅ 0 TypeScript errors.
+- `npm test` — ✅ **100/100 tests passing** across 6 test suites:
+  - `src/test/smoke.test.ts` (6 tests)
+  - `src/test/gameEngine.test.ts` (39 tests)
+  - `src/test/playableGame.test.ts` (8 tests)
+  - `src/test/persistence.test.ts` (16 tests)
+  - `src/test/wordBank.test.ts` (9 tests)
+  - `src/test/phase6QA.test.ts` (22 tests)
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 88 modules transformed, 53.06 kB CSS, 281.42 kB JS).
+- Build output verified in `dist/`: `index.html`, `_redirects`, `_headers`, `404.html`, `manifest.webmanifest`, `sw.js`, and SVG icons.
+- Dev server running on `0.0.0.0:5173` for cross-device phone testing (`http://192.168.1.5:5173/`).
+
+---
+
 ## What has NOT been done yet
 
-- Phase 7: Deployment and handoff — **pending approval**.
-- Phase 8: Online multiplayer — pending.
+- Phase 8: Optional online multiplayer backend — **pending approval**.
 
 ---
 

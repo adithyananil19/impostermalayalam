@@ -1,88 +1,95 @@
-# Imposter Party Game — Product Specification
+# IMPOSTER.MALAYALAM. — Product Specification
 
 ## Overview
 
-**Imposter** is a mobile-first, offline-capable party game for 3–20 players. Players discuss a secret word; one or more among them is an "imposter" who either has no word, a vague hint, or a related word. Players discuss and vote to eliminate the imposter. The imposter wins if they survive the vote.
+**IMPOSTER.MALAYALAM.** is a mobile-first, 100% offline-capable progressive web party game for 3–20 players. Players sit in a circle and pass a single device around. Regular players receive an authentic secret Malayalam word, while one or more imposters receive either no word, an indirect cultural hint, or the category name. During open discussion, players give clever, subtle clues without giving the secret away to the imposter. Afterward, everyone votes on who they believe is bluffing.
 
-## Target platform
+## Target Platform & Architecture
 
-- Mobile-first responsive web (PWA).
-- Works offline after first load.
-- No sign-in or server required for core gameplay.
+- Mobile-first responsive web application / Progressive Web App (PWA).
+- Operates 100% offline after the initial load via Service Worker.
+- Zero server, backend, or account creation required for core local party gameplay.
+- Data persistence via versioned `localStorage`.
 
-## Visual design
+## Visual Design System
 
-| Token | Value |
-|---|---|
-| Background | `#101110` |
-| Surface | `#191B19` |
-| Primary text | `#F3F3EF` |
-| Secondary text | `#969B95` |
-| Accent | `#C6F36A` |
-| Danger | `#F26969` |
-| Border | `#2A2E2A` |
+| Token | Value | Purpose |
+|---|---|---|
+| Background (`--clr-bg`) | `#0D0F0D` | Atmospheric deep charcoal |
+| Surface (`--clr-surface`) | `#141714` | Slightly elevated card surface |
+| Surface 2 (`--clr-surface-2`) | `#1B1F1B` | Secondary interactive containers |
+| Elevated (`--clr-surface-elevated`)| `#222722` | Modals, active states, and steppers |
+| Primary text | `#F5F6F2` | Headings, secret words, primary copy |
+| Secondary text | `#9AA198` | Helper text, descriptions, hints |
+| Accent (`--clr-accent`) | `#C6F36A` | Restrained vibrant lime for key highlights |
+| Danger (`--clr-danger`) | `#FF6B6B` | Imposter badge and elimination alerts |
+| Success (`--clr-success`) | `#5EED9C` | Regular player victory highlights |
+| Border | `rgba(255, 255, 255, 0.08)` | Micro-borders with subtle inner highlights |
 
-Typography: Inter (Google Fonts), system-ui fallback.
+**Typography**: Space Grotesk (display headings), Plus Jakarta Sans (body copy), JetBrains Mono (timer, counts, code).
 
-## Players
+## Players & Setup Flow
 
-- Min: 3, Max: 20.
-- Names must be unique and non-empty.
-- Each player has a `uuid`-like ID generated at setup.
+- **Min Players:** 3, **Max Players:** 20.
+- Streamlined 3-step setup flow:
+  1. **Step 1 (`/new-game`)**: Giant tactile counter selecting exact player count.
+  2. **Step 2 (`/players`)**: Name entry with `🎲 Fill Random Names` button for instant deduplicated random name autofill.
+  3. **Step 3 (`/settings`)**: Expanded all-in-one settings with game mode (Single vs Multi-round), imposter count stepper, imposter information mode, discussion timer, and embedded category picker with live word counts.
 
-## Imposter information modes
+## Imposter Information Modes
 
-| Mode | What the imposter sees |
-|---|---|
-| `no_word` | Nothing |
-| `vague_hint` | Indirect hint |
-| `related_word` | Different but related word |
+| Mode | What the Imposter Sees | Playstyle |
+|---|---|---|
+| `no_word` | Nothing (`""`) | Hardcore social deduction; must bluff entirely from others' clues. |
+| `vague_hint` | Vague Hint | Moderate difficulty; gets an indirect, playful Malayalam clue. |
+| `category_reveal` | Category Name | Beginner-friendly; knows the category theme (e.g. *Food & Bakery*). |
 
-## Game state machine
+## Game State Machine & Screens
 
 ```
-setup → role_reveal → discussion → voting → vote_result → round_result → next_round (or game_over)
+setup → role_reveal → discussion → voting (or quick_verdict) → vote_result → round_result → next_round (or game_over)
 ```
 
-## Screens
+1. **Home (`/`)**: Brand presentation (`IMPOSTER.MALAYALAM.`), lifetime stats, quick start, install app trigger.
+2. **Player Count (`/new-game`)**: Step 1 counter (3–20 players).
+3. **Player Names (`/players`)**: Step 2 name entries with random name generator.
+4. **Game Settings (`/settings`)**: Step 3 unified settings with embedded category multi-select.
+5. **Role Reveal (`/reveal`)**: Confidential pass-the-phone screen with tap or hold-to-reveal.
+6. **Discussion (`/discussion`)**: Discussion in progress with masked secret word, optional countdown timer, and Quick Verdict shortcut.
+7. **Quick Verdict (`/quick-verdict`)**: Instant 1-tap outcome ("Caught" or "Got Away") for casual fast games.
+8. **Voting (`/voting`)**: Pass-the-phone private ballot with confirmation gate.
+9. **Results (`/results`)**: Outcome announcement, secret word reveal, imposter identity, and vote breakdown.
+10. **Leaderboard (`/score`)**: Multi-round tournament rankings and cumulative scores.
+11. **Custom Words (`/custom-words`)**: User-authored categories & words, JSON import/export.
+12. **Settings & Preferences (`/preferences`)**: Accessibility toggles (Reduce motion, Sound, Haptic) and lifetime statistics.
 
-1. Home
-2. New Game
-3. Player Entry
-4. Category Selection
-5. Game Settings
-6. Role Reveal (pass-the-phone)
-7. Discussion (optional timer)
-8. Voting (one vote per player)
-9. Results
-10. Score / Leaderboard
-11. Custom Words
-12. Preferences
+## Victory & Scoring Rules
 
-## Victory conditions
+- **Regular Players Win:** If all active imposters are correctly identified and eliminated by vote or Quick Verdict.
+- **Imposter Wins:** If an innocent regular player is eliminated, votes result in a deadlock/tie, or surviving imposters remain.
+- **Points:** In score tracking mode, winning regulars receive 100 points each; winning imposters receive 200 points each.
 
-- **Regular players win:** all imposters are correctly identified and eliminated via vote.
-- **Imposter wins:** the vote does not eliminate all imposters (tie, wrong target, or no majority).
+## Word Bank & Categories
 
-## Word bank
+- **248 authentic cultural entries** across 11 diverse categories:
+  - Kerala Slang & Culture (18)
+  - College Life (17)
+  - Food & Bakery (18)
+  - Memes & Viral Trends (17)
+  - Places in Kerala (17)
+  - Everyday Objects (17)
+  - Politics & Public Life (17)
+  - Relationships & Dating (16)
+  - Tricky Words (18)
+  - Sports & Games (17)
+  - Malayalam Movies (76)
+- Structured format: `{ id, word, hint, category, tags }` (zero artificial difficulty tiers).
 
-- 11 built-in categories, ~171+ words.
-- Each entry: `{ id, word, hint, category, difficulty, tags }`.
-- Custom categories stored in `localStorage`.
+## PWA & Offline Support
 
-## Custom words
+- Custom Service Worker (`public/sw.js`) with cache-first and stale-while-revalidate policies.
+- Network-first navigation with offline fallback to `/index.html` guaranteeing seamless offline reloads.
+- Standalone Web App Manifest (`public/manifest.webmanifest`) with adaptive SVG icons (`192x192`, `512x512`, `maskable`).
+- Native install prompt hook (`usePWA`).
+- Safe-area insets (`viewport-fit=cover`) protecting against device notches and navigation bars.
 
-- Users can create categories, add words and hints, import/export JSON.
-- Custom entries override or supplement built-in entries.
-
-## Offline support
-
-- PWA with service worker (Phase 6).
-- Word bank bundled locally.
-- No dependency on external APIs for core game.
-
-## Persistence
-
-- `localStorage` with versioned schema.
-- Stores: preferences, custom categories, optional stats.
-- Does not store player secrets after round ends.
