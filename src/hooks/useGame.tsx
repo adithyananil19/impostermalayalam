@@ -44,7 +44,7 @@ interface GameContextValue {
   stats: GameStats;
   setPlayers: (players: Player[]) => void;
   updateSettings: (settings: Partial<GameSettings>) => void;
-  startGame: () => { success: boolean; error?: string };
+  startGame: (settingsOverride?: Partial<GameSettings>) => { success: boolean; error?: string };
   advanceReveal: () => { success: boolean; error?: string };
   startVoting: () => { success: boolean; error?: string };
   submitVote: (voterId: string, targetId: string) => { success: boolean; error?: string };
@@ -159,8 +159,14 @@ export function GameProvider({ children }: { children: ReactNode }) {
     })
   }
 
-  function startGame() {
-    return dispatch({ type: 'START_GAME', payload: { allWords } })
+  function startGame(settingsOverride?: Partial<GameSettings>) {
+    if (settingsOverride) {
+      saveStoredSettings({ ...state.settings, ...settingsOverride })
+    }
+    return dispatch({
+      type: 'START_GAME',
+      payload: { allWords, settings: settingsOverride },
+    })
   }
 
   function advanceReveal() {

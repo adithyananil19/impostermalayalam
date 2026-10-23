@@ -22,8 +22,13 @@ export function selectSecretWord(
   // Filter out already used words
   const unusedWords = categoryWords.filter(w => !usedWordIds.includes(w.id))
 
-  // If all words in these categories have been used, recycle the pool
-  const pool = unusedWords.length > 0 ? unusedWords : categoryWords
+  // If all words in these categories have been used, recycle the pool while excluding the last word
+  let pool = unusedWords
+  if (pool.length === 0) {
+    const lastUsedId = usedWordIds[usedWordIds.length - 1]
+    const recycled = categoryWords.filter(w => w.id !== lastUsedId)
+    pool = recycled.length > 0 ? recycled : categoryWords
+  }
 
   const randomIndex = Math.floor(Math.random() * pool.length)
   return pool[randomIndex]

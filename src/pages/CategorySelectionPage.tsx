@@ -5,13 +5,12 @@ import PageLayout from '../components/PageLayout'
 import BackButton from '../components/BackButton'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
-import { DEFAULT_CATEGORIES } from '../data/categories'
 import styles from './CategorySelectionPage.module.css'
 
 export default function CategorySelectionPage() {
   const navigate = useNavigate()
-  const { updateSettings, allWords } = useGame()
-  const [selected, setSelected] = useState<Set<string>>(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
+  const { updateSettings, allWords, allCategories } = useGame()
+  const [selected, setSelected] = useState<Set<string>>(new Set(allCategories.map(c => c.id)))
 
   // Live dynamic count of words per category
   const wordCountByCat = useMemo(() => {
@@ -32,7 +31,7 @@ export default function CategorySelectionPage() {
   }
 
   function selectAll() {
-    setSelected(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
+    setSelected(new Set(allCategories.map(c => c.id)))
   }
 
   function clearAll() {
@@ -78,7 +77,7 @@ export default function CategorySelectionPage() {
       </div>
 
       <ul className={styles.grid}>
-        {DEFAULT_CATEGORIES.map(cat => {
+        {allCategories.map(cat => {
           const isSelected = selected.has(cat.id)
           const count = wordCountByCat[cat.id] || 0
           return (

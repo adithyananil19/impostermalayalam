@@ -13,7 +13,7 @@ import { resolveVotes, validateVote } from './voting'
 import { calculateRoundScores, accumulateScores } from './scoring'
 
 export type GameAction =
-  | { type: 'START_GAME'; payload: { allWords: WordEntry[] } }
+  | { type: 'START_GAME'; payload: { allWords: WordEntry[]; settings?: Partial<GameSettings> } }
   | { type: 'ADVANCE_REVEAL' }
   | { type: 'START_VOTING' }
   | { type: 'SUBMIT_VOTE'; payload: { voterId: string; targetId: string } }
@@ -57,16 +57,13 @@ export function gameReducer(
   switch (action.type) {
     // ─── START_GAME ──────────────────────────────────────────────────────────
     case 'START_GAME': {
-      if (state.phase !== 'setup' && state.phase !== 'next_round') {
-        return {
-          state,
-          error: `Cannot start game from phase "${state.phase}". Must be in "setup" or "next_round".`,
-        }
-      }
+      const currentSettings: GameSettings = action.payload.settings
+        ? { ...state.settings, ...action.payload.settings }
+        : state.settings
 
       const validation = validateGameConfig(
         state.players,
-        state.settings,
+        currentSettings,
         action.payload.allWords
       )
       if (!validation.isValid) {
@@ -78,7 +75,7 @@ export function gameReducer(
 
       const word = selectSecretWord(
         action.payload.allWords,
-        state.settings.enabledCategories,
+        currentSettings.enabledCategories,
         state.usedWordIds
       )
       if (!word) {
@@ -90,9 +87,9 @@ export function gameReducer(
 
       const roles = assignRoles(
         state.players,
-        state.settings.imposterCount,
+        currentSettings.imposterCount,
         word,
-        state.settings.imposterMode
+        currentSettings.imposterMode
       )
 
       const roundNumber = (state.completedRounds.length || 0) + 1
@@ -100,6 +97,7 @@ export function gameReducer(
       return {
         state: {
           ...state,
+          settings: currentSettings,
           phase: 'role_reveal',
           usedWordIds: [...state.usedWordIds, word.id],
           currentRound: {

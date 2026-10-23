@@ -7,9 +7,8 @@ import Button from '../components/Button'
 import Toggle from '../components/Toggle'
 import Badge from '../components/Badge'
 import Divider from '../components/Divider'
-import { DEFAULT_CATEGORIES } from '../data/categories'
 import styles from './GameSettingsPage.module.css'
-import type { ImposterMode, GameMode } from '../types'
+import type { ImposterMode, GameMode, GameSettings } from '../types'
 
 const IMPOSTER_MODES: { value: ImposterMode; label: string; desc: string }[] = [
   { value: 'no_word', label: 'No Word', desc: 'Imposter receives no secret word' },
@@ -19,7 +18,7 @@ const IMPOSTER_MODES: { value: ImposterMode; label: string; desc: string }[] = [
 
 export default function GameSettingsPage() {
   const navigate = useNavigate()
-  const { state, updateSettings, startGame, allWords } = useGame()
+  const { state, updateSettings, startGame, allWords, allCategories } = useGame()
   const s = state.settings
 
   const [gameMode, setGameMode] = useState<GameMode>(s.gameMode || 'single')
@@ -45,7 +44,7 @@ export default function GameSettingsPage() {
     if (s.enabledCategories && s.enabledCategories.length > 0) {
       return new Set(s.enabledCategories)
     }
-    return new Set(DEFAULT_CATEGORIES.map(c => c.id))
+    return new Set(allCategories.map(c => c.id))
   })
 
   const playerCount = Math.max(state.players.length, 3)
@@ -61,7 +60,7 @@ export default function GameSettingsPage() {
   }
 
   function handleSelectAll() {
-    setSelectedCats(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
+    setSelectedCats(new Set(allCategories.map(c => c.id)))
   }
 
   function handleClearAll() {
@@ -73,7 +72,8 @@ export default function GameSettingsPage() {
     const effectiveRoundCount = gameMode === 'multi' ? Math.max(roundCount, 2) : 1
     const effectiveTrackScores = gameMode === 'multi' ? true : trackScores
 
-    updateSettings({
+    const newSettings: GameSettings = {
+      ...state.settings,
       gameMode,
       imposterCount,
       imposterMode,
@@ -84,9 +84,10 @@ export default function GameSettingsPage() {
       roundCount: effectiveRoundCount,
       trackScores: effectiveTrackScores,
       enabledCategories: [...selectedCats],
-    })
+    }
 
-    const result = startGame()
+    updateSettings(newSettings)
+    const result = startGame(newSettings)
     if (!result.success) {
       setConfigError(result.error || 'Failed to start game.')
       return
@@ -301,7 +302,7 @@ export default function GameSettingsPage() {
           <div>
             <h3 className={styles.sectionTitle}>Word Categories</h3>
             <p className={styles.catSub}>
-              {selectedCats.size} of {DEFAULT_CATEGORIES.length} categories enabled
+              {selectedCats.size} of {allCategories.length} categories enabled
             </p>
           </div>
           <div className={styles.catActionBtns}>
@@ -315,7 +316,7 @@ export default function GameSettingsPage() {
         </div>
 
         <div className={styles.catGrid}>
-          {DEFAULT_CATEGORIES.map(cat => {
+          {allCategories.map(cat => {
             const isSelected = selectedCats.has(cat.id)
             const count = wordCountByCat[cat.id] || 0
             return (

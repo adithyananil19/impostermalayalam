@@ -337,5 +337,73 @@ describe('Phase 3: Playable Game Integration Tests', () => {
       expect(state.currentRound?.word.id).not.toBe(originalWord?.id)
       expect(state.phase).toBe('discussion')
     })
+
+    it('starts a new game after round completion, resets revealIndex to 0, and picks a fresh word', () => {
+      const players = makePlayers(3)
+      const settings: GameSettings = {
+        ...DEFAULT_SETTINGS,
+        enabledCategories: ALL_CATEGORY_IDS,
+      }
+      let state = createInitialState(players, settings)
+
+      // Round 1
+      state = gameReducer(state, { type: 'START_GAME', payload: { allWords: INITIAL_WORDS } }).state
+      const round1Word = state.currentRound?.word
+      expect(state.currentRound?.revealIndex).toBe(0)
+
+      // Advance through all reveals
+      for (let i = 0; i < 3; i++) {
+        state = gameReducer(state, { type: 'ADVANCE_REVEAL' }).state
+      }
+      expect(state.phase).toBe('discussion')
+
+      // Complete round via quick verdict
+      state = gameReducer(state, { type: 'QUICK_VERDICT', payload: { imposterCaught: true } }).state
+      expect(state.phase).toBe('round_result')
+
+      // Starting next game directly from round_result (e.g. "Play Again" or "Start Game")
+      const restartRes = gameReducer(state, {
+        type: 'START_GAME',
+        payload: { allWords: INITIAL_WORDS },
+      })
+      expect(restartRes.error).toBeUndefined()
+      state = restartRes.state
+
+      // Must be in role_reveal with revealIndex = 0 (NOT "All Players Ready!")
+      expect(state.phase).toBe('role_reveal')
+      expect(state.currentRound?.revealIndex).toBe(0)
+      // Must have selected a fresh secret word
+      expect(state.currentRound?.word.id).not.toBe(round1Word?.id)
+    })
+
+    it('seamlessly plays with custom categories and words', () => {
+      const customCategory = 'college-fest-custom'
+      const customWords = [
+        {
+          id: 'custom-fest-1',
+          word: 'Choreo Night',
+          hint: 'Stage lights',
+          category: customCategory,
+          difficulty: 'easy' as const,
+          isCustom: true,
+        },
+      ]
+      const combinedWords = [...INITIAL_WORDS, ...customWords]
+
+      const players = makePlayers(3)
+      const settings: GameSettings = {
+        ...DEFAULT_SETTINGS,
+        enabledCategories: [customCategory],
+      }
+      let state = createInitialState(players, settings)
+
+      const startRes = gameReducer(state, {
+        type: 'START_GAME',
+        payload: { allWords: combinedWords },
+      })
+      expect(startRes.error).toBeUndefined()
+      expect(startRes.state.currentRound?.word.word).toBe('Choreo Night')
+      expect(startRes.state.currentRound?.word.category).toBe(customCategory)
+    })
   })
 })
