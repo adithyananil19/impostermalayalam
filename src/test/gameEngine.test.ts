@@ -216,12 +216,12 @@ describe('PHASE 2 — Game Engine & Rules Unit Tests', () => {
       expect(regular.displayInfo).toBe('Porotta')
     })
 
-    it('Mode 3 (related_word): imposter receives related word', () => {
-      const roles = assignRoles(MOCK_PLAYERS, 1, SAMPLE_WORD, 'related_word')
+    it('Mode 3 (category_reveal): imposter receives category name', () => {
+      const roles = assignRoles(MOCK_PLAYERS, 1, SAMPLE_WORD, 'category_reveal')
       const imposter = roles.find(r => r.role === 'imposter')!
       const regular = roles.find(r => r.role === 'regular')!
 
-      expect(imposter.displayInfo).toBe('Beef fry')
+      expect(imposter.displayInfo).toBe('Food & Bakery')
       expect(regular.displayInfo).toBe('Porotta')
     })
 

@@ -51,7 +51,7 @@ export default function HomePage() {
 
         <div className={styles.titleWrap}>
           <h1 className={styles.title}>
-            IMPOSTER<span className={styles.accentDot}>.</span>
+            IMPOSTER<span className={styles.accentDot}>.</span>MALAYALAM<span className={styles.accentDot}>.</span>
           </h1>
           <p className={styles.subtitle}>One word. One liar. No trust.</p>
         </div>
@@ -98,7 +98,6 @@ export default function HomePage() {
 
       <div className={styles.pillRow}>
         <span className={styles.featurePill}>Pass-the-Phone</span>
-        <span className={styles.featurePill}>100% Offline</span>
         <span className={styles.featurePill}>Kerala Edition</span>
       </div>
     </PageLayout>

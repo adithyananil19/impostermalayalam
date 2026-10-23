@@ -14,7 +14,7 @@ describe('DEFAULT_SETTINGS', () => {
   })
 
   it('imposterMode is one of the accepted values', () => {
-    expect(['no_word', 'vague_hint', 'related_word']).toContain(DEFAULT_SETTINGS.imposterMode)
+    expect(['no_word', 'vague_hint', 'category_reveal']).toContain(DEFAULT_SETTINGS.imposterMode)
   })
 
   it('revealStyle is one of the accepted values', () => {

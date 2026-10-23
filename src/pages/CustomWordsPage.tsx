@@ -36,7 +36,6 @@ export default function CustomWordsPage() {
   const [editingWordId, setEditingWordId] = useState<string | null>(null)
   const [wordText, setWordText] = useState('')
   const [wordHint, setWordHint] = useState('')
-  const [wordRelated, setWordRelated] = useState('')
   const [wordCat, setWordCat] = useState(allCategories[0]?.id || 'kerala-slang')
   const [wordError, setWordError] = useState<string | null>(null)
 
@@ -73,7 +72,6 @@ export default function CustomWordsPage() {
       const res = editCustomWord(editingWordId, {
         word: wordText,
         hint: wordHint,
-        relatedWord: wordRelated || undefined,
         category: wordCat,
       })
       if (!res.success) {
@@ -84,7 +82,6 @@ export default function CustomWordsPage() {
       const res = addCustomWord({
         word: wordText,
         hint: wordHint,
-        relatedWord: wordRelated || undefined,
         category: wordCat,
       })
       if (!res.success) {
@@ -96,7 +93,6 @@ export default function CustomWordsPage() {
     // Reset word form
     setWordText('')
     setWordHint('')
-    setWordRelated('')
     setEditingWordId(null)
     setShowAddWord(false)
   }
@@ -105,7 +101,6 @@ export default function CustomWordsPage() {
     setEditingWordId(word.id)
     setWordText(word.word)
     setWordHint(word.hint)
-    setWordRelated(word.relatedWord || '')
     setWordCat(word.category)
     setShowAddWord(true)
     setActiveTab('words')
@@ -323,7 +318,6 @@ export default function CustomWordsPage() {
                     setEditingWordId(null)
                     setWordText('')
                     setWordHint('')
-                    setWordRelated('')
                     setShowAddWord(true)
                   }
                 }}
@@ -379,17 +373,6 @@ export default function CustomWordsPage() {
                       ))}
                     </select>
                   </div>
-
-                  <div className={styles.inputGroup}>
-                    <label className={styles.inputLabel}>Related Word (Optional)</label>
-                    <input
-                      type="text"
-                      className={styles.inputField}
-                      placeholder="For related_word mode"
-                      value={wordRelated}
-                      onChange={e => setWordRelated(e.target.value)}
-                    />
-                  </div>
                 </div>
 
                 <div className={styles.formBtns}>
@@ -434,7 +417,6 @@ export default function CustomWordsPage() {
                         </div>
                         <p className={styles.itemHint}>
                           Hint: <em>"{w.hint}"</em>
-                          {w.relatedWord && ` · Related: "${w.relatedWord}"`}
                         </p>
                       </div>
                       <div className={styles.itemActions}>

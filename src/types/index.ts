@@ -27,7 +27,7 @@ export interface Category {
 
 // ─── Imposter information modes ───────────────────────────────────────────────
 
-export type ImposterMode = 'no_word' | 'vague_hint' | 'related_word';
+export type ImposterMode = 'no_word' | 'vague_hint' | 'category_reveal';
 
 // ─── Reveal interaction style ─────────────────────────────────────────────────
 

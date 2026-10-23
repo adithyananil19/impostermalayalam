@@ -1,4 +1,5 @@
 import type { Player, WordEntry, ImposterMode, PlayerRole } from '../types'
+import { DEFAULT_CATEGORIES } from '../data/categories'
 
 /**
  * Randomly assigns imposter and regular roles to players,
@@ -9,7 +10,8 @@ export function assignRoles(
   imposterCount: number,
   word: WordEntry,
   mode: ImposterMode,
-  randomizer: () => number = Math.random
+  randomizer: () => number = Math.random,
+  categoryName?: string
 ): PlayerRole[] {
   if (!players || players.length === 0 || !word) {
     return []
@@ -36,8 +38,9 @@ export function assignRoles(
         displayInfo = ''
       } else if (mode === 'vague_hint') {
         displayInfo = word.hint
-      } else if (mode === 'related_word') {
-        displayInfo = word.relatedWord || word.hint
+      } else if (mode === 'category_reveal') {
+        const catObj = DEFAULT_CATEGORIES.find(c => c.id === word.category)
+        displayInfo = categoryName || (catObj ? catObj.name : word.category)
       }
     } else {
       displayInfo = word.word
@@ -58,7 +61,8 @@ export function assignRoles(
 export function updateRolesForNewWord(
   currentRoles: PlayerRole[],
   newWord: WordEntry,
-  mode: ImposterMode
+  mode: ImposterMode,
+  categoryName?: string
 ): PlayerRole[] {
   return currentRoles.map(roleEntry => {
     let displayInfo = ''
@@ -68,8 +72,9 @@ export function updateRolesForNewWord(
         displayInfo = ''
       } else if (mode === 'vague_hint') {
         displayInfo = newWord.hint
-      } else if (mode === 'related_word') {
-        displayInfo = newWord.relatedWord || newWord.hint
+      } else if (mode === 'category_reveal') {
+        const catObj = DEFAULT_CATEGORIES.find(c => c.id === newWord.category)
+        displayInfo = categoryName || (catObj ? catObj.name : newWord.category)
       }
     } else {
       displayInfo = newWord.word

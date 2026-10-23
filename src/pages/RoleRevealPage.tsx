@@ -137,7 +137,6 @@ export default function RoleRevealPage() {
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
-            <p className={styles.secretCoverTitle}>Confidential Role</p>
             <p className={styles.secretCoverSub}>
               {isHoldMode
                 ? 'Press and hold the button below to see your secret role.'
@@ -186,7 +185,7 @@ export default function RoleRevealPage() {
                     ? 'Information'
                     : state.settings.imposterMode === 'vague_hint'
                     ? 'Your Vague Hint'
-                    : 'Your Clue Word'
+                    : 'Category Hint'
                   : 'Secret Word'}
               </span>
 

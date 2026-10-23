@@ -13,7 +13,7 @@ import type { ImposterMode, GameMode, GameSettings } from '../types'
 const IMPOSTER_MODES: { value: ImposterMode; label: string; desc: string }[] = [
   { value: 'no_word', label: 'No Word', desc: 'Imposter receives no secret word' },
   { value: 'vague_hint', label: 'Vague Hint (Recommended)', desc: 'Imposter receives an indirect clue' },
-  { value: 'related_word', label: 'Related Word', desc: 'Imposter receives a different but related word' },
+  { value: 'category_reveal', label: 'Category Reveal', desc: 'Imposter sees the category name' },
 ]
 
 export default function GameSettingsPage() {
@@ -330,24 +330,33 @@ export default function GameSettingsPage() {
               >
                 <div className={styles.catCardTop}>
                   <span className={styles.catName}>{cat.name}</span>
-                  <Badge variant={isSelected ? 'accent' : 'default'}>
-                    {count} {count === 1 ? 'word' : 'words'}
-                  </Badge>
+                  <div className={styles.catMeta}>
+                    <span
+                      className={[
+                        styles.catCountBadge,
+                        isSelected ? styles.catCountSelected : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                    >
+                      {count} {count === 1 ? 'word' : 'words'}
+                    </span>
+                    {isSelected && (
+                      <span className={styles.catCheckmark} aria-hidden="true">
+                        <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                          <path
+                            d="M2.5 7L5.5 10L11.5 4"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <p className={styles.catDesc}>{cat.description}</p>
-                {isSelected && (
-                  <div className={styles.catCheckmark} aria-hidden="true">
-                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M2.5 7L5.5 10L11.5 4"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                )}
               </button>
             )
           })}

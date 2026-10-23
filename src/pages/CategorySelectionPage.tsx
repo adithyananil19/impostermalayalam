@@ -4,7 +4,6 @@ import { useGame } from '../hooks/useGame'
 import PageLayout from '../components/PageLayout'
 import BackButton from '../components/BackButton'
 import Button from '../components/Button'
-import Badge from '../components/Badge'
 import styles from './CategorySelectionPage.module.css'
 
 export default function CategorySelectionPage() {
@@ -91,9 +90,31 @@ export default function CategorySelectionPage() {
               >
                 <div className={styles.catTop}>
                   <span className={styles.catName}>{cat.name}</span>
-                  <Badge variant={isSelected ? 'accent' : 'default'}>
-                    {count} {count === 1 ? 'word' : 'words'}
-                  </Badge>
+                  <div className={styles.catMeta}>
+                    <span
+                      className={[
+                        styles.catCountBadge,
+                        isSelected ? styles.catCountSelected : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                    >
+                      {count} {count === 1 ? 'word' : 'words'}
+                    </span>
+                    {isSelected && (
+                      <span className={styles.checkmark} aria-hidden="true">
+                        <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                          <path
+                            d="M2.5 7L5.5 10L11.5 4"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <p className={styles.catDesc}>{cat.description}</p>
               </button>

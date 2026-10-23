@@ -10,22 +10,20 @@ import type { Player } from '../types'
 const MIN_PLAYERS = 3
 const MAX_PLAYERS = 20
 
-const MALAYALEE_NAMES = [
-  'Rahul', 'Anjali', 'Sneha', 'Akhil', 'Jithin', 'Nimisha',
-  'Vishnu', 'Sandra', 'Midhun', 'Gopika', 'Sreerag', 'Arya',
-  'Favas', 'Riya', 'Basil', 'Parvathi', 'Amal', 'Ananya',
-  'Kiran', 'Deepa', 'Shambu', 'Appu', 'Chinnu', 'Dileep',
-  'Nivin', 'Fahadh', 'Tovino', 'Kavya', 'Manju', 'Unni',
-  'Ashwin', 'Athira', 'Bibin', 'Devika', 'Gokul', 'Haritha',
-  'Manu', 'Meera', 'Nikhil', 'Pooja', 'Roshan', 'Swathi'
+const RANDOM_NAMES = [
+  'Alex', 'Maya', 'Sam', 'Sneha', 'Leo', 'Arya', 'Chris', 'Nimisha',
+  'Noah', 'Sandra', 'Emma', 'Gopika', 'Ryan', 'Zoe', 'Favas', 'Riya',
+  'Luke', 'Tara', 'Amal', 'Ananya', 'Max', 'Pooja', 'Kevin', 'Deepa',
+  'Arjun', 'Elena', 'Nikhil', 'Chloe', 'Rohan', 'Sara', 'Natasha', 'Ashwin',
+  'Dev', 'Athira', 'Neil', 'Devika', 'Gokul', 'Mira', 'Manu', 'Swathi'
 ]
 
 function generateId() {
   return Math.random().toString(36).slice(2, 10)
 }
 
-function getRandomMalayaleeNames(count: number): string[] {
-  const shuffled = [...MALAYALEE_NAMES].sort(() => Math.random() - 0.5)
+function getRandomNames(count: number): string[] {
+  const shuffled = [...RANDOM_NAMES].sort(() => Math.random() - 0.5)
   return shuffled.slice(0, count)
 }
 
@@ -77,8 +75,8 @@ export default function PlayerEntryPage() {
     setNames(prev => prev.map(n => (n.id === id ? { ...n, name: value } : n)))
   }
 
-  function handleFillMalayaleeNames() {
-    const randomPicks = getRandomMalayaleeNames(names.length)
+  function handleFillRandomNames() {
+    const randomPicks = getRandomNames(names.length)
     setNames(prev =>
       prev.map((item, idx) => ({
         ...item,
@@ -143,7 +141,7 @@ export default function PlayerEntryPage() {
           <span className={styles.countBadge}>{names.length} Players</span>
         </div>
         <p className={styles.sub}>
-          Enter names or auto-fill with popular Malayalee names.
+          Enter names or auto-fill with random party names.
         </p>
       </div>
 
@@ -151,10 +149,10 @@ export default function PlayerEntryPage() {
         <button
           type="button"
           className={styles.randomFillBtn}
-          onClick={handleFillMalayaleeNames}
+          onClick={handleFillRandomNames}
         >
           <span className={styles.diceIcon}>🎲</span>
-          <span>Fill with Malayalee Names</span>
+          <span>Fill Random Names</span>
         </button>
       </div>
 

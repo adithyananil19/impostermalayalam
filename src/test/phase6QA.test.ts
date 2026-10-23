@@ -125,26 +125,26 @@ describe('PHASE 6 — Comprehensive QA & Robustness Test Suite', () => {
       expect(regularRole.displayInfo).toBe('Neyyappam')
     })
 
-    it('accurately delivers "related_word" mode', () => {
-      const roles = assignRoles(players, 1, sampleWord, 'related_word')
+    it('accurately delivers "category_reveal" mode', () => {
+      const roles = assignRoles(players, 1, sampleWord, 'category_reveal')
       const imposterRole = roles.find(r => r.role === 'imposter')!
       const regularRole = roles.find(r => r.role === 'regular')!
 
-      expect(imposterRole.displayInfo).toBe('Unniyappam')
+      expect(imposterRole.displayInfo).toBe('Food & Bakery')
       expect(regularRole.displayInfo).toBe('Neyyappam')
     })
 
-    it('falls back to hint in "related_word" mode if relatedWord is absent', () => {
-      const noRelatedWord: WordEntry = {
+    it('falls back to category id in "category_reveal" mode if category name is not in defaults', () => {
+      const customCatWord: WordEntry = {
         id: 'test-qa-02',
         word: 'Sadya',
         hint: 'Grand feast on banana leaf',
-        category: 'food-bakery',
+        category: 'custom-fest',
       }
-      const roles = assignRoles(players, 1, noRelatedWord, 'related_word')
+      const roles = assignRoles(players, 1, customCatWord, 'category_reveal')
       const imposterRole = roles.find(r => r.role === 'imposter')!
 
-      expect(imposterRole.displayInfo).toBe('Grand feast on banana leaf')
+      expect(imposterRole.displayInfo).toBe('custom-fest')
     })
 
     it('ensures getPlayerPrivateInfo isolates player info securely', () => {

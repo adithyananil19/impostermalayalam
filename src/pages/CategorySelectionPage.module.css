@@ -30,18 +30,19 @@
 .bulkBtn {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--clr-accent);
-  font-weight: 600;
-  padding: 4px 10px;
+  color: var(--clr-text-secondary);
+  font-weight: 500;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(198, 243, 106, 0.2);
-  background: var(--clr-accent-subtle);
+  border: 1px solid var(--clr-border-light);
+  background: var(--clr-surface-2);
   transition: all var(--transition-fast);
 }
 
 .bulkBtn:hover {
-  background: rgba(198, 243, 106, 0.22);
-  border-color: var(--clr-accent);
+  background: var(--clr-surface-elevated);
+  color: var(--clr-text-primary);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .grid {
@@ -89,6 +90,31 @@
   margin-bottom: var(--space-2);
 }
 
+.catMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.catCountBadge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--clr-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.catCountSelected {
+  background: rgba(198, 243, 106, 0.08);
+  color: #cfd8c7;
+  border-color: rgba(198, 243, 106, 0.22);
+  font-weight: 500;
+}
+
 .catName {
   font-family: var(--font-display);
   font-size: var(--text-base);
@@ -101,20 +127,16 @@
   font-size: var(--text-sm);
   color: var(--clr-text-secondary);
   line-height: 1.4;
-  padding-right: var(--space-6);
 }
 
 .checkmark {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   background: var(--clr-accent);
   border-radius: var(--radius-full);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #0d0f0d;
-  box-shadow: 0 0 10px rgba(198, 243, 106, 0.5);
+  flex-shrink: 0;
 }
