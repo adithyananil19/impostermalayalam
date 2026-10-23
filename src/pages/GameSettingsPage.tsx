@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGame } from '../hooks/useGame'
 import PageLayout from '../components/PageLayout'
@@ -7,22 +7,9 @@ import Button from '../components/Button'
 import Toggle from '../components/Toggle'
 import Badge from '../components/Badge'
 import Divider from '../components/Divider'
+import { DEFAULT_CATEGORIES } from '../data/categories'
 import styles from './GameSettingsPage.module.css'
-import type { ImposterMode, RevealStyle, VoteOutcome, GameMode } from '../types'
-
-const CATEGORIES = [
-  { id: 'kerala-slang', name: 'Kerala Slang', description: 'Everyday Malayalam culture', count: 10 },
-  { id: 'college-life', name: 'College Life', description: 'Campus struggles & wins', count: 10 },
-  { id: 'food-bakery', name: 'Food & Bakery', description: 'Kerala eats and treats', count: 10 },
-  { id: 'memes-trends', name: 'Memes & Trends', description: 'Viral internet culture', count: 10 },
-  { id: 'places-kerala', name: 'Places in Kerala', description: 'Towns and cities', count: 10 },
-  { id: 'everyday-objects', name: 'Everyday Objects', description: 'Things around you', count: 10 },
-  { id: 'politics', name: 'Politics & Public Life', description: 'Playful political humour', count: 10 },
-  { id: 'relationships', name: 'Relationships', description: 'Love, friendship, drama', count: 10 },
-  { id: 'tricky-words', name: 'Tricky Words', description: 'Deceptively similar answers', count: 10 },
-  { id: 'sports-games', name: 'Sports & Games', description: 'Football, cricket and more', count: 10 },
-  { id: 'malayalam-movies', name: 'Malayalam Movies', description: 'Famous films & classics', count: 81 },
-]
+import type { ImposterMode, GameMode } from '../types'
 
 const IMPOSTER_MODES: { value: ImposterMode; label: string; desc: string }[] = [
   { value: 'no_word', label: 'No Word', desc: 'Imposter receives no secret word' },
@@ -30,23 +17,9 @@ const IMPOSTER_MODES: { value: ImposterMode; label: string; desc: string }[] = [
   { value: 'related_word', label: 'Related Word', desc: 'Imposter receives a different but related word' },
 ]
 
-const REVEAL_STYLES: { value: RevealStyle; label: string; desc: string }[] = [
-  { value: 'tap', label: 'Tap to Reveal', desc: 'Tap once to show, tap again to hide' },
-  { value: 'hold', label: 'Hold to Reveal', desc: 'Hold down to see, release to hide' },
-]
-
-const VOTE_OUTCOMES: { value: VoteOutcome; label: string; desc: string }[] = [
-  { value: 'reveal_and_end', label: 'Reveal & End', desc: 'Show result and conclude the round' },
-  {
-    value: 'eliminate_and_continue',
-    label: 'Eliminate & Continue',
-    desc: 'Eliminate candidate and continue if needed',
-  },
-]
-
 export default function GameSettingsPage() {
   const navigate = useNavigate()
-  const { state, updateSettings, startGame } = useGame()
+  const { state, updateSettings, startGame, allWords } = useGame()
   const s = state.settings
 
   const [gameMode, setGameMode] = useState<GameMode>(s.gameMode || 'single')
@@ -54,18 +27,25 @@ export default function GameSettingsPage() {
   const [imposterMode, setImposterMode] = useState<ImposterMode>(s.imposterMode)
   const [timerEnabled, setTimerEnabled] = useState(s.timerEnabled)
   const [timerSeconds, setTimerSeconds] = useState(s.timerSeconds)
-  const [revealStyle, setRevealStyle] = useState<RevealStyle>(s.revealStyle)
-  const [voteOutcome, setVoteOutcome] = useState<VoteOutcome>(s.voteOutcome)
   const [roundCount, setRoundCount] = useState(s.roundCount || 3)
   const [trackScores] = useState(s.trackScores)
   const [configError, setConfigError] = useState<string | null>(null)
+
+  // Live dynamic count of words per category
+  const wordCountByCat = useMemo(() => {
+    const map: Record<string, number> = {}
+    allWords.forEach(w => {
+      map[w.category] = (map[w.category] || 0) + 1
+    })
+    return map
+  }, [allWords])
 
   // Default: all categories selected if none selected yet
   const [selectedCats, setSelectedCats] = useState<Set<string>>(() => {
     if (s.enabledCategories && s.enabledCategories.length > 0) {
       return new Set(s.enabledCategories)
     }
-    return new Set(CATEGORIES.map(c => c.id))
+    return new Set(DEFAULT_CATEGORIES.map(c => c.id))
   })
 
   const playerCount = Math.max(state.players.length, 3)
@@ -81,7 +61,7 @@ export default function GameSettingsPage() {
   }
 
   function handleSelectAll() {
-    setSelectedCats(new Set(CATEGORIES.map(c => c.id)))
+    setSelectedCats(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
   }
 
   function handleClearAll() {
@@ -99,8 +79,8 @@ export default function GameSettingsPage() {
       imposterMode,
       timerEnabled,
       timerSeconds,
-      revealStyle,
-      voteOutcome,
+      revealStyle: 'tap',
+      voteOutcome: 'reveal_and_end',
       roundCount: effectiveRoundCount,
       trackScores: effectiveTrackScores,
       enabledCategories: [...selectedCats],
@@ -315,57 +295,13 @@ export default function GameSettingsPage() {
 
       <Divider />
 
-      {/* ── 4. REVEAL STYLE ── */}
-      <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>Role Reveal Style</h3>
-        <div className={styles.optGroup}>
-          {REVEAL_STYLES.map(r => (
-            <button
-              key={r.value}
-              type="button"
-              className={[styles.optCard, revealStyle === r.value ? styles.optSelected : '']
-                .filter(Boolean)
-                .join(' ')}
-              onClick={() => setRevealStyle(r.value)}
-            >
-              <span className={styles.optTitle}>{r.label}</span>
-              <span className={styles.optDesc}>{r.desc}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── 5. VOTING RULES ── */}
-      <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>Voting Outcome</h3>
-        <div className={styles.optGroup}>
-          {VOTE_OUTCOMES.map(v => (
-            <button
-              key={v.value}
-              type="button"
-              className={[styles.optCard, voteOutcome === v.value ? styles.optSelected : '']
-                .filter(Boolean)
-                .join(' ')}
-              onClick={() => setVoteOutcome(v.value)}
-            >
-              <span className={styles.optTitle}>{v.label}</span>
-              <span className={styles.optDesc}>{v.desc}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── 6. WORD CATEGORIES SELECTION (EMBEDDED) ── */}
+      {/* ── 4. WORD CATEGORIES SELECTION (EMBEDDED WITH LIVE WORD COUNTS) ── */}
       <section className={styles.section}>
         <div className={styles.catHeaderRow}>
           <div>
             <h3 className={styles.sectionTitle}>Word Categories</h3>
             <p className={styles.catSub}>
-              {selectedCats.size} of {CATEGORIES.length} categories enabled
+              {selectedCats.size} of {DEFAULT_CATEGORIES.length} categories enabled
             </p>
           </div>
           <div className={styles.catActionBtns}>
@@ -379,8 +315,9 @@ export default function GameSettingsPage() {
         </div>
 
         <div className={styles.catGrid}>
-          {CATEGORIES.map(cat => {
+          {DEFAULT_CATEGORIES.map(cat => {
             const isSelected = selectedCats.has(cat.id)
+            const count = wordCountByCat[cat.id] || 0
             return (
               <button
                 key={cat.id}
@@ -392,7 +329,9 @@ export default function GameSettingsPage() {
               >
                 <div className={styles.catCardTop}>
                   <span className={styles.catName}>{cat.name}</span>
-                  <Badge variant={isSelected ? 'accent' : 'default'}>{cat.count} words</Badge>
+                  <Badge variant={isSelected ? 'accent' : 'default'}>
+                    {count} {count === 1 ? 'word' : 'words'}
+                  </Badge>
                 </div>
                 <p className={styles.catDesc}>{cat.description}</p>
                 {isSelected && (

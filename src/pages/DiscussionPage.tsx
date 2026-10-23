@@ -2,21 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
-import Badge from '../components/Badge'
 import { useGame } from '../hooks/useGame'
 import styles from './DiscussionPage.module.css'
 
 export default function DiscussionPage() {
   const navigate = useNavigate()
-  const { state, startVoting, skipWord } = useGame()
+  const { state, startVoting } = useGame()
 
-  const currentRound = state.currentRound
   const timerEnabled = state.settings.timerEnabled
   const initialSeconds = state.settings.timerSeconds || 120
 
   const [timeLeft, setTimeLeft] = useState(initialSeconds)
   const [running, setRunning] = useState(timerEnabled)
-  const [skipNotice, setSkipNotice] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
@@ -47,21 +44,6 @@ export default function DiscussionPage() {
     navigate('/voting')
   }
 
-  function handleSkipWord() {
-    const res = skipWord()
-    if (res.success) {
-      setSkipNotice(true)
-      setTimeout(() => setSkipNotice(false), 3000)
-    }
-  }
-
-  const categoryName = currentRound?.word?.category
-    ? currentRound.word.category
-        .split('-')
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-        .join(' ')
-    : 'All Categories'
-
   return (
     <PageLayout
       footer={
@@ -81,17 +63,6 @@ export default function DiscussionPage() {
       }
     >
       <div className={styles.content}>
-        <div className={styles.topRow}>
-          <span className={styles.stepBadge}>Discussion</span>
-          <Badge variant="accent">Category: {categoryName}</Badge>
-        </div>
-
-        {skipNotice && (
-          <div className={styles.skipAlert} role="status">
-            ✨ Word has been skipped! New secret word active.
-          </div>
-        )}
-
         <div className={styles.statusBox}>
           <div className={styles.statusIcon} aria-hidden="true">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
@@ -129,8 +100,8 @@ export default function DiscussionPage() {
           </div>
         </div>
 
-        {/* ── TIMER SECTION ── */}
-        {timerEnabled ? (
+        {/* ── TIMER SECTION (IF ENABLED) ── */}
+        {timerEnabled && (
           <div className={styles.timerSection}>
             <div className={styles.timerDisplay}>{formatTime(timeLeft)}</div>
             <div className={styles.timerBtns}>
@@ -153,22 +124,7 @@ export default function DiscussionPage() {
               </Button>
             </div>
           </div>
-        ) : (
-          <div className={styles.untimedNotice}>
-            <span>Discussion is untimed. When everyone has spoken, proceed to voting.</span>
-          </div>
         )}
-
-        {/* ── SKIP WORD CONTROL ── */}
-        <div className={styles.skipWordBox}>
-          <button
-            type="button"
-            className={styles.skipWordBtn}
-            onClick={handleSkipWord}
-          >
-            🔄 Skip Word (keeps current roles)
-          </button>
-        </div>
       </div>
     </PageLayout>
   )

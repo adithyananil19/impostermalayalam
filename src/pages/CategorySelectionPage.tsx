@@ -1,32 +1,26 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGame } from '../hooks/useGame'
 import PageLayout from '../components/PageLayout'
 import BackButton from '../components/BackButton'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
+import { DEFAULT_CATEGORIES } from '../data/categories'
 import styles from './CategorySelectionPage.module.css'
-
-// Phase 5 will load these from the real data module.
-// For Phase 1, we use representative mock categories.
-const MOCK_CATEGORIES = [
-  { id: 'kerala-slang', name: 'Kerala Slang', description: 'Everyday Malayalam culture', count: 10 },
-  { id: 'college-life', name: 'College Life', description: 'Campus struggles & wins', count: 10 },
-  { id: 'food-bakery', name: 'Food & Bakery', description: 'Kerala eats and treats', count: 10 },
-  { id: 'memes-trends', name: 'Memes & Trends', description: 'Viral internet culture', count: 10 },
-  { id: 'places-kerala', name: 'Places in Kerala', description: 'Towns and cities', count: 10 },
-  { id: 'everyday-objects', name: 'Everyday Objects', description: 'Things around you', count: 10 },
-  { id: 'politics', name: 'Politics & Public Life', description: 'Playful political humour', count: 10 },
-  { id: 'relationships', name: 'Relationships', description: 'Love, friendship, drama', count: 10 },
-  { id: 'tricky-words', name: 'Tricky Words', description: 'Deceptively similar answers', count: 10 },
-  { id: 'sports-games', name: 'Sports & Games', description: 'Football, cricket and more', count: 10 },
-  { id: 'malayalam-movies', name: 'Malayalam Movies', description: 'Famous films & classics', count: 81 },
-]
 
 export default function CategorySelectionPage() {
   const navigate = useNavigate()
-  const { updateSettings } = useGame()
-  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const { updateSettings, allWords } = useGame()
+  const [selected, setSelected] = useState<Set<string>>(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
+
+  // Live dynamic count of words per category
+  const wordCountByCat = useMemo(() => {
+    const map: Record<string, number> = {}
+    allWords.forEach(w => {
+      map[w.category] = (map[w.category] || 0) + 1
+    })
+    return map
+  }, [allWords])
 
   function toggle(id: string) {
     setSelected(prev => {
@@ -38,7 +32,7 @@ export default function CategorySelectionPage() {
   }
 
   function selectAll() {
-    setSelected(new Set(MOCK_CATEGORIES.map(c => c.id)))
+    setSelected(new Set(DEFAULT_CATEGORIES.map(c => c.id)))
   }
 
   function clearAll() {
@@ -84,8 +78,9 @@ export default function CategorySelectionPage() {
       </div>
 
       <ul className={styles.grid}>
-        {MOCK_CATEGORIES.map(cat => {
+        {DEFAULT_CATEGORIES.map(cat => {
           const isSelected = selected.has(cat.id)
+          const count = wordCountByCat[cat.id] || 0
           return (
             <li key={cat.id}>
               <button
@@ -97,22 +92,11 @@ export default function CategorySelectionPage() {
               >
                 <div className={styles.catTop}>
                   <span className={styles.catName}>{cat.name}</span>
-                  <Badge variant={isSelected ? 'accent' : 'default'}>{cat.count} words</Badge>
+                  <Badge variant={isSelected ? 'accent' : 'default'}>
+                    {count} {count === 1 ? 'word' : 'words'}
+                  </Badge>
                 </div>
                 <p className={styles.catDesc}>{cat.description}</p>
-                {isSelected && (
-                  <div className={styles.checkmark} aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M2.5 7L5.5 10L11.5 4"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                )}
               </button>
             </li>
           )
