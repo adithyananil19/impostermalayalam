@@ -103,7 +103,13 @@ export default function DiscussionPage() {
         {/* ── TIMER SECTION (IF ENABLED) ── */}
         {timerEnabled && (
           <div className={styles.timerSection}>
-            <div className={styles.timerDisplay}>{formatTime(timeLeft)}</div>
+            <div
+              className={styles.timerDisplay}
+              role="timer"
+              aria-label={`Discussion timer: ${formatTime(timeLeft)}`}
+            >
+              {formatTime(timeLeft)}
+            </div>
             <div className={styles.timerBtns}>
               <Button
                 variant="secondary"

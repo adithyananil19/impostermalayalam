@@ -152,6 +152,19 @@ export default function RoleRevealPage() {
                 onMouseUp={() => setIsRevealed(false)}
                 onTouchStart={() => setIsRevealed(true)}
                 onTouchEnd={() => setIsRevealed(false)}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault()
+                    setIsRevealed(true)
+                  }
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault()
+                    setIsRevealed(false)
+                  }
+                }}
+                aria-label="Hold to reveal your secret role"
               >
                 Hold to Reveal Role
               </button>

@@ -35,11 +35,11 @@ src/
 |---|---|---|
 | 0 | Project scaffold, folder structure, docs | ✅ Done |
 | 1 | Visual foundation, all screens, navigation | ✅ Done |
-| 2 | Game engine, state machine, unit tests | 🔲 Pending |
-| 3 | Full playable game (connect engine to UI) | 🔲 Pending |
-| 4 | Settings, custom words, localStorage | 🔲 Pending |
-| 5 | Complete word bank (171+ entries) | 🔲 Pending |
-| 6 | PWA, offline, accessibility, final QA | 🔲 Pending |
+| 2 | Game engine, state machine, unit tests | ✅ Done |
+| 3 | Full playable game (connect engine to UI) | ✅ Done |
+| 4 | Settings, custom words, localStorage | ✅ Done |
+| 5 | Complete word bank (248 entries) | ✅ Done |
+| 6 | PWA, offline, accessibility, final QA | ✅ Done |
 | 7 | Deployment and handoff | 🔲 Pending |
 | 8 | Optional online multiplayer | 🔲 Pending |
 

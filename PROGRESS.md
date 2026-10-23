@@ -255,10 +255,69 @@ Created and expanded the complete authentic word bank with **248 original entrie
 
 ---
 
+## Phase 6 — Offline support, accessibility, and final polish ✅ COMPLETE
+
+**Completed:** 2026-10-24
+
+### What was done
+
+#### 1. Full PWA & Service Worker Offline Support
+- **Service Worker (`public/sw.js`)**:
+  - Implemented precaching for application shell (`/`, `/index.html`, `/manifest.webmanifest`, `/favicon.svg`, icons).
+  - Navigation caching strategy: Network-first falling back to cached `/index.html` to guarantee offline SPA route reloads.
+  - Stale-while-revalidate / cache-first for local static assets and external Google Fonts.
+  - Automatic cache cleanup and version management (`imposter-pwa-v1`).
+- **Web App Manifest (`public/manifest.webmanifest`)**:
+  - Configured standalone PWA manifest with name, short name, start url, standalone display mode, orientation, background color `#0d0f0d`, and theme color `#0d0f0d`.
+  - Created high-resolution SVG app icons: `public/icon-192.svg`, `public/icon-512.svg`, and `public/icon-maskable.svg` (with 80% safe zone padding).
+- **Service Worker Registration (`src/utils/registerSW.ts`)**:
+  - Registered service worker cleanly in `src/main.tsx` on window load.
+- **PWA State Hook (`src/hooks/usePWA.ts`)**:
+  - React hook tracking online/offline status, standalone state, and `beforeinstallprompt` installation triggers.
+  - Added home screen install button and live "Offline Mode Active • 100% Playable" status pill.
+
+#### 2. Mobile Responsiveness & Safe Area Insets
+- **iOS & Android Viewport Adjustments**:
+  - Added `viewport-fit=cover` to meta viewport in `index.html`.
+  - Added `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` to [`PageLayout.module.css`](file:///d:/Workspace/New%20folder/src/components/PageLayout.module.css) for iPhone Dynamic Island and Android navigation gesture bar protection.
+- **Touch Targets & Anti-Flicker**:
+  - Styled all interactive buttons with minimum 44px+ touch targets on mobile.
+  - Added `user-select: none;` and `-webkit-tap-highlight-color: transparent;` to eliminate tap flicker and accidental text highlights during fast party gameplay.
+
+#### 3. Accessibility & Keyboard Polish
+- **Accessible Form Feedback**:
+  - Added `role="alert"` and `aria-live` to validation and error messages across player entry and voting screens.
+  - Added `role="timer"` and `aria-label` to the discussion timer display.
+  - Enabled keyboard Space and Enter key triggers (`onKeyDown`/`onKeyUp`) on the hold-to-reveal button for screen reader and keyboard accessibility.
+  - High contrast focus rings (`:focus-visible` with lime accent outline).
+  - Seamless reduced-motion enforcement via both `@media (prefers-reduced-motion: reduce)` and `[data-reduced-motion="true"]`.
+
+#### 4. Phase 6 Robustness & QA Test Suite (`src/test/phase6QA.test.ts`)
+- Implemented 22 comprehensive integration tests covering:
+  - Minimum (3 players / 1 imposter) and maximum (20 players / 4 imposters) bounds.
+  - All 3 imposter info modes (`no_word`, `vague_hint`, `related_word`) and fallback behaviors.
+  - Word bank category filtering and dynamic word skipping without role disruption.
+  - Voting outcomes: regular victory, imposter victory, and tie-breaking deadlock rules.
+  - LocalStorage resilience against corrupted JSON strings and malformed packages.
+
+### Verified & Tested
+
+- `npm run typecheck` — ✅ 0 TypeScript errors.
+- `npm test` — ✅ **100/100 tests passing** across 6 test suites:
+  - `src/test/smoke.test.ts` (6 tests)
+  - `src/test/gameEngine.test.ts` (39 tests)
+  - `src/test/playableGame.test.ts` (8 tests)
+  - `src/test/persistence.test.ts` (16 tests)
+  - `src/test/wordBank.test.ts` (9 tests)
+  - `src/test/phase6QA.test.ts` (22 tests)
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 88 modules transformed, 52.28 kB CSS, 281.10 kB JS). All PWA assets (`manifest.webmanifest`, `sw.js`, icons) verified in `dist/`.
+- Dev server running on `0.0.0.0:5173` for cross-device phone testing (`http://192.168.1.5:5173/`).
+
+---
+
 ## What has NOT been done yet
 
-- Phase 6: PWA, offline support, accessibility QA — **pending approval**.
-- Phase 7: Deployment — pending.
+- Phase 7: Deployment and handoff — **pending approval**.
 - Phase 8: Online multiplayer — pending.
 
 ---

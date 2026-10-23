@@ -96,7 +96,11 @@ export default function VotingPage() {
     <PageLayout
       footer={
         <div className={styles.footerActions}>
-          {voteError && <p className={styles.errorText}>⚠️ {voteError}</p>}
+          {voteError && (
+            <p className={styles.errorText} role="alert">
+              ⚠️ {voteError}
+            </p>
+          )}
           <Button
             variant="primary"
             size="lg"

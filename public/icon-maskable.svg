@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgMaskable" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1e281a" />
+      <stop offset="100%" stop-color="#0d0f0d" />
+    </radialGradient>
+    <filter id="neonMaskable" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Full bleed background for maskable standard -->
+  <rect width="512" height="512" fill="url(#bgMaskable)" />
+  
+  <!-- Outer subtle tech ring within safe zone -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#c6f36a" stroke-width="2.5" stroke-opacity="0.16" stroke-dasharray="12 8" />
+  
+  <!-- Stylized Imposter Eye / Mask (sized inside safe zone radius 200px) -->
+  <path d="M160 256 C196 200, 316 200, 352 256 C316 312, 196 312, 160 256 Z" fill="#141814" stroke="#c6f36a" stroke-width="8" filter="url(#neonMaskable)" />
+  
+  <!-- Glowing Center Iris -->
+  <circle cx="256" cy="256" r="34" fill="#c6f36a" />
+  <circle cx="256" cy="256" r="15" fill="#0d0f0d" />
+</svg>

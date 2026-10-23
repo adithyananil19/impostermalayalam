@@ -3,11 +3,13 @@ import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
 import { useGame } from '../hooks/useGame'
+import { usePWA } from '../hooks/usePWA'
 import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const navigate = useNavigate()
   const { stats } = useGame()
+  const { isOnline, canInstall, triggerInstall } = usePWA()
 
   return (
     <PageLayout
@@ -26,10 +28,16 @@ export default function HomePage() {
     >
       <div className={styles.hero}>
         <div className={styles.topBadgeWrap}>
-          <Badge variant="accent">
-            <span className={styles.pulseDot} />
-            Party Game • 3–20 Players
-          </Badge>
+          {!isOnline ? (
+            <Badge variant="warning">
+              ⚡ Offline Mode Active • 100% Playable
+            </Badge>
+          ) : (
+            <Badge variant="accent">
+              <span className={styles.pulseDot} />
+              Party Game • 3–20 Players
+            </Badge>
+          )}
         </div>
 
         <div className={styles.logoWrap}>
@@ -75,6 +83,17 @@ export default function HomePage() {
           </svg>
           Start New Game
         </Button>
+
+        {canInstall && (
+          <Button
+            variant="secondary"
+            size="md"
+            fullWidth
+            onClick={triggerInstall}
+          >
+            📲 Install Imposter App
+          </Button>
+        )}
       </div>
 
       <div className={styles.pillRow}>
