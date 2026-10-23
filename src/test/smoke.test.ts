@@ -24,4 +24,8 @@ describe('DEFAULT_SETTINGS', () => {
   it('voteOutcome is one of the accepted values', () => {
     expect(['reveal_and_end', 'eliminate_and_continue']).toContain(DEFAULT_SETTINGS.voteOutcome)
   })
+
+  it('gameMode is single by default', () => {
+    expect(DEFAULT_SETTINGS.gameMode).toBe('single')
+  })
 })

@@ -39,9 +39,14 @@ export type RevealStyle = 'tap' | 'hold';
 
 export type VoteOutcome = 'reveal_and_end' | 'eliminate_and_continue';
 
+// ─── Game mode ────────────────────────────────────────────────────────────
+
+export type GameMode = 'single' | 'multi';
+
 // ─── Game settings ────────────────────────────────────────────────────────────
 
 export interface GameSettings {
+  gameMode: GameMode;
   imposterCount: number;
   imposterMode: ImposterMode;
   enabledCategories: string[];
@@ -54,6 +59,7 @@ export interface GameSettings {
 }
 
 export const DEFAULT_SETTINGS: GameSettings = {
+  gameMode: 'single',
   imposterCount: 1,
   imposterMode: 'vague_hint',
   enabledCategories: [],

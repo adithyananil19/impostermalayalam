@@ -1,5 +1,17 @@
 .intro {
   padding: var(--space-6) 0 var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.stepBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .heading {
@@ -9,8 +21,20 @@
   letter-spacing: -0.02em;
 }
 
+.sub {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+}
+
 .section {
   padding: var(--space-3) 0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
 }
 
 .sectionTitle {
@@ -20,10 +44,81 @@
   color: var(--clr-accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: var(--space-3);
+  margin-bottom: 0;
 }
 
-.counter {
+.sectionHint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+}
+
+/* ── Mode Selection ── */
+.modeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.modeCard {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.modeCard:hover:not(.modeLocked) {
+  background: var(--clr-surface-2);
+  border-color: var(--clr-border-light);
+}
+
+.modeActive {
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-subtle);
+  box-shadow: 0 0 18px -4px rgba(198, 243, 106, 0.25), inset 0 1px 0 rgba(198, 243, 106, 0.2);
+}
+
+.modeLocked {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.modeTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.modeTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.activeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--clr-accent);
+  box-shadow: 0 0 8px var(--clr-accent);
+}
+
+.modeDesc {
+  font-size: var(--text-xs);
+  color: var(--clr-text-secondary);
+  line-height: 1.4;
+}
+
+/* ── Stepper ── */
+.counterRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,20 +126,22 @@
   padding: var(--space-3) 0;
 }
 
-.counterLabel {
-  font-size: var(--text-base);
-  color: var(--clr-text-primary);
-  font-weight: 600;
+.counterInfo {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.counterSub {
+.counterTitle {
+  font-size: var(--text-base);
+  color: var(--clr-text-primary);
+  font-weight: 600;
+}
+
+.counterSubtitle {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--clr-text-muted);
-  font-weight: 400;
 }
 
 .stepper {
@@ -58,8 +155,8 @@
 }
 
 .stepBtn {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-full);
   background: var(--clr-surface-2);
   border: 1px solid var(--clr-border);
@@ -91,18 +188,21 @@
   text-align: center;
 }
 
+/* ── Option Cards ── */
 .optGroup {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  margin-bottom: var(--space-2);
+  margin-top: var(--space-3);
 }
 
-.optLabel {
-  font-size: var(--text-sm);
+.optGroupLabel {
+  font-size: var(--text-xs);
   color: var(--clr-text-secondary);
-  margin-bottom: var(--space-2);
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
 }
 
 .optCard {
@@ -143,4 +243,116 @@
   font-size: var(--text-sm);
   color: var(--clr-text-secondary);
   line-height: 1.4;
+}
+
+/* ── Categories Embedded Grid ── */
+.catHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.catSub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+}
+
+.catActionBtns {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.catActionBtn {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--clr-accent);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(198, 243, 106, 0.2);
+  background: var(--clr-accent-subtle);
+  transition: all var(--transition-fast);
+}
+
+.catActionBtn:hover {
+  background: rgba(198, 243, 106, 0.25);
+  border-color: var(--clr-accent);
+}
+
+.catGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.catCard {
+  width: 100%;
+  text-align: left;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  transition: all var(--transition-fast);
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.catCard:hover {
+  background: var(--clr-surface-2);
+  border-color: var(--clr-border-light);
+}
+
+.catSelected {
+  border-color: var(--clr-accent);
+  background: var(--clr-accent-subtle);
+  box-shadow: 0 0 18px -4px rgba(198, 243, 106, 0.2), inset 0 1px 0 rgba(198, 243, 106, 0.15);
+}
+
+.catCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: 2px;
+}
+
+.catName {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--clr-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.catDesc {
+  font-size: var(--text-xs);
+  color: var(--clr-text-secondary);
+  line-height: 1.4;
+  padding-right: var(--space-6);
+}
+
+.catCheckmark {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 20px;
+  height: 20px;
+  background: var(--clr-accent);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d0f0d;
+}
+
+.catWarning {
+  font-size: var(--text-sm);
+  color: var(--clr-danger);
+  margin-bottom: var(--space-2);
+  text-align: center;
 }
