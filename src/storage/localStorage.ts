@@ -282,10 +282,6 @@ export function validateAndParseCustomData(jsonString: string): ImportValidation
             typeof wordObj.id === 'string' && wordObj.id.trim()
               ? wordObj.id.trim()
               : `custom-${Date.now()}-${idx}`
-          const difficulty =
-            wordObj.difficulty === 'easy' || wordObj.difficulty === 'medium' || wordObj.difficulty === 'hard'
-              ? wordObj.difficulty
-              : 'easy'
           const relatedWord =
             typeof wordObj.relatedWord === 'string' && wordObj.relatedWord.trim()
               ? wordObj.relatedWord.trim()
@@ -297,7 +293,6 @@ export function validateAndParseCustomData(jsonString: string): ImportValidation
             hint,
             relatedWord,
             category: category.toLowerCase(),
-            difficulty,
             tags: Array.isArray(wordObj.tags) ? wordObj.tags.map(String) : ['custom'],
             isCustom: true,
           })

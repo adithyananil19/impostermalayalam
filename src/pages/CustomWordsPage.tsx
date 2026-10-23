@@ -38,7 +38,6 @@ export default function CustomWordsPage() {
   const [wordHint, setWordHint] = useState('')
   const [wordRelated, setWordRelated] = useState('')
   const [wordCat, setWordCat] = useState(allCategories[0]?.id || 'kerala-slang')
-  const [wordDiff, setWordDiff] = useState<'easy' | 'medium' | 'hard'>('easy')
   const [wordError, setWordError] = useState<string | null>(null)
 
   // Import / Export State
@@ -76,7 +75,6 @@ export default function CustomWordsPage() {
         hint: wordHint,
         relatedWord: wordRelated || undefined,
         category: wordCat,
-        difficulty: wordDiff,
       })
       if (!res.success) {
         setWordError(res.error || 'Failed to update word.')
@@ -88,7 +86,6 @@ export default function CustomWordsPage() {
         hint: wordHint,
         relatedWord: wordRelated || undefined,
         category: wordCat,
-        difficulty: wordDiff,
       })
       if (!res.success) {
         setWordError(res.error || 'Failed to add word.')
@@ -110,7 +107,6 @@ export default function CustomWordsPage() {
     setWordHint(word.hint)
     setWordRelated(word.relatedWord || '')
     setWordCat(word.category)
-    setWordDiff(word.difficulty)
     setShowAddWord(true)
     setActiveTab('words')
   }
@@ -394,19 +390,6 @@ export default function CustomWordsPage() {
                       onChange={e => setWordRelated(e.target.value)}
                     />
                   </div>
-                </div>
-
-                <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>Difficulty</label>
-                  <select
-                    className={styles.selectField}
-                    value={wordDiff}
-                    onChange={e => setWordDiff(e.target.value as 'easy' | 'medium' | 'hard')}
-                  >
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                  </select>
                 </div>
 
                 <div className={styles.formBtns}>

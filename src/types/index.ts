@@ -7,15 +7,12 @@ export interface Player {
 
 // ─── Word / Category ──────────────────────────────────────────────────────────
 
-export type Difficulty = 'easy' | 'medium' | 'hard';
-
 export interface WordEntry {
   id: string;
   word: string;
   hint: string;
   relatedWord?: string;
   category: string;
-  difficulty: Difficulty;
   tags?: string[];
   isCustom?: boolean;
 }

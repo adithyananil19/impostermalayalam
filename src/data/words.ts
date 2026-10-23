@@ -8,7 +8,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Roadside Romeo',
     relatedWord: 'Kozhi',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'youth'],
   },
   {
@@ -17,7 +16,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Unsolicited advice',
     relatedWord: 'Naattukaar',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'culture'],
   },
   {
@@ -26,7 +24,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'CCTV network',
     relatedWord: 'Ammavan',
     category: 'kerala-slang',
-    difficulty: 'medium',
     tags: ['slang', 'culture'],
   },
   {
@@ -35,7 +32,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Cringe king',
     relatedWord: 'Thallu',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'humour'],
   },
   {
@@ -44,7 +40,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Unlimited edition',
     relatedWord: 'Show off',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'humour'],
   },
   {
@@ -53,7 +48,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fake celebrity',
     relatedWord: 'Show off',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'attitude'],
   },
   {
@@ -62,7 +56,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Attention seeker',
     relatedWord: 'Jaada',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'attitude'],
   },
   {
@@ -71,7 +64,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Romantic weather',
     relatedWord: 'Vibe',
     category: 'kerala-slang',
-    difficulty: 'medium',
     tags: ['slang', 'vibe'],
   },
   {
@@ -80,7 +72,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Walking disaster',
     relatedWord: 'Chali',
     category: 'kerala-slang',
-    difficulty: 'medium',
     tags: ['slang', 'humour'],
   },
   {
@@ -89,7 +80,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Mission failed',
     relatedWord: 'Theppu',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'trouble'],
   },
   {
@@ -98,7 +88,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Heartbreak express',
     relatedWord: 'Pani paali',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'romance'],
   },
   {
@@ -107,7 +96,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Red alert',
     relatedWord: 'Pani paali',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'trouble'],
   },
   {
@@ -116,7 +104,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Flirt specialist',
     relatedWord: 'Vayannoki',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'youth'],
   },
   {
@@ -125,7 +112,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Top tier',
     relatedWord: 'Thakarnnu',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'praise'],
   },
   {
@@ -134,7 +120,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Mess creator',
     relatedWord: 'Chali',
     category: 'kerala-slang',
-    difficulty: 'medium',
     tags: ['slang', 'humour'],
   },
   {
@@ -143,7 +128,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Campus mood',
     relatedWord: 'Kuliru',
     category: 'kerala-slang',
-    difficulty: 'easy',
     tags: ['slang', 'vibe'],
   },
   {
@@ -152,7 +136,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Brain on vacation',
     relatedWord: 'Oola',
     category: 'kerala-slang',
-    difficulty: 'medium',
     tags: ['slang', 'humour'],
   },
   {
@@ -161,7 +144,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'High class show',
     relatedWord: 'Jaada',
     category: 'kerala-slang',
-    difficulty: 'hard',
     tags: ['slang', 'attitude'],
   },
 
@@ -172,7 +154,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Attendance suicide',
     relatedWord: 'Proxy',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'attendance'],
   },
   {
@@ -181,7 +162,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Empty classroom',
     relatedWord: 'Bunk',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'bunk'],
   },
   {
@@ -190,7 +170,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Academic DLC',
     relatedWord: 'Backlog',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'exams'],
   },
   {
@@ -199,7 +178,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Verbal execution',
     relatedWord: 'Lab exam',
     category: 'college-life',
-    difficulty: 'medium',
     tags: ['campus', 'exams'],
   },
   {
@@ -208,7 +186,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Last-minute masterpiece',
     relatedWord: 'Assignment',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'lab'],
   },
   {
@@ -217,7 +194,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Random panic',
     relatedWord: 'Viva',
     category: 'college-life',
-    difficulty: 'medium',
     tags: ['campus', 'exams'],
   },
   {
@@ -226,7 +202,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Copy-paste marathon',
     relatedWord: 'Record book',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'studies'],
   },
   {
@@ -235,7 +210,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Unfinished business',
     relatedWord: 'Supply',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'exams'],
   },
   {
@@ -244,7 +218,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Attendance jugaad',
     relatedWord: 'Bunk',
     category: 'college-life',
-    difficulty: 'medium',
     tags: ['campus', 'attendance'],
   },
   {
@@ -253,7 +226,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Lecturer's mercy",
     relatedWord: 'Attendance',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'grades'],
   },
   {
@@ -262,7 +234,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Culinary gamble',
     relatedWord: 'Canteen',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['hostel', 'food'],
   },
   {
@@ -271,7 +242,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Gossip headquarters',
     relatedWord: 'Tea stall',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['campus', 'hangout'],
   },
   {
@@ -280,7 +250,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'All-nighter festival',
     relatedWord: 'Supply',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['exams', 'campus'],
   },
   {
@@ -289,7 +258,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Final boss',
     relatedWord: 'Principal',
     category: 'college-life',
-    difficulty: 'easy',
     tags: ['authority', 'campus'],
   },
   {
@@ -298,7 +266,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Netflix marathon',
     relatedWord: 'Bunk',
     category: 'college-life',
-    difficulty: 'medium',
     tags: ['exams', 'holidays'],
   },
   {
@@ -307,7 +274,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Offer letter dream',
     relatedWord: 'Interview',
     category: 'college-life',
-    difficulty: 'medium',
     tags: ['career', 'campus'],
   },
   {
@@ -316,7 +282,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Officially educational tour',
     relatedWord: 'Goa trip',
     category: 'college-life',
-    difficulty: 'hard',
     tags: ['tour', 'fun'],
   },
 
@@ -327,7 +292,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Layered addiction',
     relatedWord: 'Beef fry',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'iconic'],
   },
   {
@@ -336,7 +300,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Gym enemy',
     relatedWord: 'Porotta',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'meat'],
   },
   {
@@ -345,7 +308,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Chaya partner',
     relatedWord: 'Sulaimani',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'bakery'],
   },
   {
@@ -354,7 +316,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Breakfast tower',
     relatedWord: 'Kadala',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'breakfast'],
   },
   {
@@ -363,7 +324,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Fish curry's bestie",
     relatedWord: 'Meen curry',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'traditional'],
   },
   {
@@ -372,7 +332,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Temple snack',
     relatedWord: 'Neyyappam',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'sweet'],
   },
   {
@@ -381,7 +340,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Sweet surprise',
     relatedWord: 'Ada',
     category: 'food-bakery',
-    difficulty: 'medium',
     tags: ['food', 'sweet'],
   },
   {
@@ -390,7 +348,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'No-milk gang',
     relatedWord: 'Pazhampori',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'drink'],
   },
   {
@@ -399,7 +356,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Midnight decision',
     relatedWord: 'Al Faham',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'street'],
   },
   {
@@ -408,7 +364,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Summer saviour',
     relatedWord: 'Kulukki',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'drink'],
   },
   {
@@ -417,7 +372,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Sunday emotion',
     relatedWord: 'Mandi',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'iconic'],
   },
   {
@@ -426,7 +380,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Charcoal smoke',
     relatedWord: 'Shawarma',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['food', 'arabic'],
   },
   {
@@ -435,7 +388,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Black elixir',
     relatedWord: 'Sulaimani',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['drinks', 'daily'],
   },
   {
@@ -444,7 +396,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Brown sweet',
     relatedWord: 'Unniyappam',
     category: 'food-bakery',
-    difficulty: 'medium',
     tags: ['bakery', 'sweet'],
   },
   {
@@ -453,7 +404,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Sweet slab',
     relatedWord: 'Kozhikode',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['sweet', 'malabar'],
   },
   {
@@ -462,7 +412,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Evening crunch',
     relatedWord: 'Pazhampori',
     category: 'food-bakery',
-    difficulty: 'easy',
     tags: ['bakery', 'snacks'],
   },
   {
@@ -471,7 +420,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Banana leaf luxury',
     relatedWord: 'Fish fry',
     category: 'food-bakery',
-    difficulty: 'hard',
     tags: ['seafood', 'traditional'],
   },
   {
@@ -480,7 +428,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Leaf feast',
     relatedWord: 'Payasam',
     category: 'food-bakery',
-    difficulty: 'medium',
     tags: ['feast', 'traditional'],
   },
 
@@ -491,7 +438,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Internet trap',
     relatedWord: 'Troll',
     category: 'memes-trends',
-    difficulty: 'medium',
     tags: ['internet', 'classic'],
   },
   {
@@ -500,7 +446,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Lone wolf edit',
     relatedWord: 'Gigachad',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'trend'],
   },
   {
@@ -509,7 +454,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Brainrot anthem',
     relatedWord: 'NPC',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'brainrot'],
   },
   {
@@ -518,7 +462,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Scripted human',
     relatedWord: 'Bot',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'gaming'],
   },
   {
@@ -527,7 +470,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Comment-section warrior',
     relatedWord: 'Roast',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'social'],
   },
   {
@@ -536,7 +478,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Second-hand embarrassment',
     relatedWord: 'Chali',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'humour'],
   },
   {
@@ -545,7 +486,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fifteen-second fame',
     relatedWord: 'Trending',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'instagram'],
   },
   {
@@ -554,7 +494,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Comment farming',
     relatedWord: 'Engagement',
     category: 'memes-trends',
-    difficulty: 'medium',
     tags: ['internet', 'social'],
   },
   {
@@ -563,7 +502,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Self-made reality',
     relatedWord: 'Solulu',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'slang'],
   },
   {
@@ -572,7 +510,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Imaginary respect',
     relatedWord: 'Flex',
     category: 'memes-trends',
-    difficulty: 'medium',
     tags: ['internet', 'trends'],
   },
   {
@@ -581,7 +518,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Unspoken magnetism',
     relatedWord: 'Flirt',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'genz'],
   },
   {
@@ -590,7 +526,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Total lie',
     relatedWord: 'Thallu',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'slang'],
   },
   {
@@ -599,7 +534,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Honest truth',
     relatedWord: 'Real',
     category: 'memes-trends',
-    difficulty: 'medium',
     tags: ['internet', 'slang'],
   },
   {
@@ -608,7 +542,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Absolute legend',
     relatedWord: 'Sigma male',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['internet', 'meme'],
   },
   {
@@ -617,7 +550,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Twenty-four hour flex',
     relatedWord: 'Viral reel',
     category: 'memes-trends',
-    difficulty: 'easy',
     tags: ['social', 'media'],
   },
   {
@@ -626,7 +558,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Dramatic entrance',
     relatedWord: 'Delulu',
     category: 'memes-trends',
-    difficulty: 'medium',
     tags: ['trend', 'lifestyle'],
   },
   {
@@ -635,7 +566,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Midnight thumb workout',
     relatedWord: 'Insomnia',
     category: 'memes-trends',
-    difficulty: 'hard',
     tags: ['habits', 'internet'],
   },
 
@@ -646,7 +576,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Halwa capital',
     relatedWord: 'Malappuram',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['malabar', 'city'],
   },
   {
@@ -655,7 +584,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Pooram town',
     relatedWord: 'Round',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['central', 'culture'],
   },
   {
@@ -664,7 +592,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Traffic simulator',
     relatedWord: 'Metro',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['central', 'city'],
   },
   {
@@ -673,7 +600,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Boat-life',
     relatedWord: 'Kuttanad',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['backwaters', 'tourism'],
   },
   {
@@ -682,7 +608,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Blanket weather',
     relatedWord: 'Tea estate',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['high-range', 'nature'],
   },
   {
@@ -691,7 +616,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Weekend escape',
     relatedWord: 'Ghat pass',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['high-range', 'nature'],
   },
   {
@@ -700,7 +624,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Theyyam land',
     relatedWord: 'Malabar',
     category: 'places-kerala',
-    difficulty: 'medium',
     tags: ['malabar', 'culture'],
   },
   {
@@ -709,7 +632,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Football fever',
     relatedWord: 'Biryani',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['malabar', 'sports'],
   },
   {
@@ -718,7 +640,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Heat chamber',
     relatedWord: 'Pass',
     category: 'places-kerala',
-    difficulty: 'medium',
     tags: ['inland', 'nature'],
   },
   {
@@ -727,7 +648,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Capital scene',
     relatedWord: 'Secretariat',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['south', 'capital'],
   },
   {
@@ -736,7 +656,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Cliff beach',
     relatedWord: 'Kovalam',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['beach', 'tourism'],
   },
   {
@@ -745,7 +664,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Lighthouse shore',
     relatedWord: 'Varkala',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['beach', 'south'],
   },
   {
@@ -754,7 +672,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fort waves',
     relatedWord: 'Kasaragod',
     category: 'places-kerala',
-    difficulty: 'medium',
     tags: ['fort', 'north'],
   },
   {
@@ -763,7 +680,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Lake resort',
     relatedWord: 'Alappuzha',
     category: 'places-kerala',
-    difficulty: 'medium',
     tags: ['backwaters', 'tourism'],
   },
   {
@@ -772,7 +688,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Bahubali falls',
     relatedWord: 'Forest',
     category: 'places-kerala',
-    difficulty: 'easy',
     tags: ['waterfalls', 'nature'],
   },
   {
@@ -781,7 +696,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Pine forest breeze',
     relatedWord: 'Munnar',
     category: 'places-kerala',
-    difficulty: 'hard',
     tags: ['hill station', 'nature'],
   },
   {
@@ -790,7 +704,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Seven language land',
     relatedWord: 'Bekal',
     category: 'places-kerala',
-    difficulty: 'hard',
     tags: ['north', 'culture'],
   },
 
@@ -801,7 +714,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Monsoon shield',
     relatedWord: 'Raincoat',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['monsoon', 'everyday'],
   },
   {
@@ -810,7 +722,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Whistle machine',
     relatedWord: 'Stove',
     category: 'everyday-objects',
-    difficulty: 'medium',
     tags: ['kitchen', 'home'],
   },
   {
@@ -819,7 +730,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Night weapon',
     relatedWord: 'Racket',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['home', 'gadget'],
   },
   {
@@ -828,7 +738,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Socket shortage',
     relatedWord: 'Plug',
     category: 'everyday-objects',
-    difficulty: 'medium',
     tags: ['electric', 'home'],
   },
   {
@@ -837,7 +746,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Lifeline',
     relatedWord: 'Power bank',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['tech', 'everyday'],
   },
   {
@@ -846,7 +754,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Public isolation',
     relatedWord: 'Headphones',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['tech', 'personal'],
   },
   {
@@ -855,7 +762,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Summer MVP',
     relatedWord: 'AC',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['home', 'comfort'],
   },
   {
@@ -864,7 +770,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Function VIP',
     relatedWord: 'Shamiana',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['events', 'furniture'],
   },
   {
@@ -873,7 +778,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Hydration prop',
     relatedWord: 'Flask',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['college', 'daily'],
   },
   {
@@ -882,7 +786,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Family battlefield',
     relatedWord: 'TV',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['living room', 'entertainment'],
   },
   {
@@ -891,7 +794,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Night ventilation',
     relatedWord: 'Mundu',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['clothing', 'home'],
   },
   {
@@ -900,7 +802,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Festive white',
     relatedWord: 'Lungi',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['clothing', 'traditional'],
   },
   {
@@ -909,7 +810,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Footwear weapon',
     relatedWord: 'Sandals',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['daily', 'home'],
   },
   {
@@ -918,7 +818,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Red metal weight',
     relatedWord: 'Kitchen',
     category: 'everyday-objects',
-    difficulty: 'medium',
     tags: ['kitchen', 'home'],
   },
   {
@@ -927,7 +826,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Power cut saviour',
     relatedWord: 'Candle',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['electric', 'monsoon'],
   },
   {
@@ -936,7 +834,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fire starter',
     relatedWord: 'Lighter',
     category: 'everyday-objects',
-    difficulty: 'easy',
     tags: ['kitchen', 'small'],
   },
   {
@@ -945,7 +842,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Lunchbox treasure',
     relatedWord: 'Bag',
     category: 'everyday-objects',
-    difficulty: 'hard',
     tags: ['school', 'office'],
   },
 
@@ -956,7 +852,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Promise season',
     relatedWord: 'Campaign',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['public', 'governance'],
   },
   {
@@ -965,7 +860,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Loudspeaker marathon',
     relatedWord: 'Rally',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['election', 'public'],
   },
   {
@@ -974,7 +868,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Unexpected holiday',
     relatedWord: 'Strike',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['public', 'kerala'],
   },
   {
@@ -983,7 +876,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wish list',
     relatedWord: 'Promises',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['policy', 'election'],
   },
   {
@@ -992,7 +884,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Question dodge',
     relatedWord: 'Mic',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['media', 'press'],
   },
   {
@@ -1001,7 +892,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Shouting arena',
     relatedWord: 'Speaker',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['government', 'debate'],
   },
   {
@@ -1010,7 +900,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wall takeover',
     relatedWord: 'Flex board',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['visuals', 'election'],
   },
   {
@@ -1019,7 +908,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Ribbon moment',
     relatedWord: 'Potholes',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['civic', 'satire'],
   },
   {
@@ -1028,7 +916,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Everyone yelling',
     relatedWord: 'Channel panel',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['news', 'media'],
   },
   {
@@ -1037,7 +924,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Guessing contest',
     relatedWord: 'Exit poll',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['statistics', 'election'],
   },
   {
@@ -1046,7 +932,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Protest destination',
     relatedWord: 'Assembly',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['capital', 'government'],
   },
   {
@@ -1055,7 +940,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Red banner',
     relatedWord: 'UDF',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['coalition', 'kerala'],
   },
   {
@@ -1064,7 +948,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Hand symbol',
     relatedWord: 'LDF',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['coalition', 'kerala'],
   },
   {
@@ -1073,7 +956,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Birthday and election wall',
     relatedWord: 'Poster',
     category: 'politics',
-    difficulty: 'medium',
     tags: ['public', 'street'],
   },
   {
@@ -1082,7 +964,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Whistling feedback',
     relatedWord: 'Stage',
     category: 'politics',
-    difficulty: 'hard',
     tags: ['events', 'sound'],
   },
   {
@@ -1091,7 +972,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Rhyming shout',
     relatedWord: 'Strike',
     category: 'politics',
-    difficulty: 'easy',
     tags: ['march', 'protest'],
   },
   {
@@ -1100,7 +980,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Friendly cop initiative',
     relatedWord: 'Police',
     category: 'politics',
-    difficulty: 'hard',
     tags: ['police', 'civic'],
   },
 
@@ -1111,7 +990,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Free therapist',
     relatedWord: 'Partner in crime',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['friendship', 'wholesome'],
   },
   {
@@ -1120,7 +998,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Eye-contact Olympics',
     relatedWord: 'Butterflies',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['romance', 'college'],
   },
   {
@@ -1129,7 +1006,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Undefined subscription',
     relatedWord: 'Talking stage',
     category: 'relationships',
-    difficulty: 'medium',
     tags: ['modern', 'dating'],
   },
   {
@@ -1138,7 +1014,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Emotional waiting room',
     relatedWord: 'Bro',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['college', 'heartbreak'],
   },
   {
@@ -1147,7 +1022,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Archived chapter',
     relatedWord: 'Blocked',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['past', 'closure'],
   },
   {
@@ -1156,7 +1030,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Romance manager',
     relatedWord: 'Best friend',
     category: 'relationships',
-    difficulty: 'medium',
     tags: ['dating', 'friendship'],
   },
   {
@@ -1165,7 +1038,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Keeper material',
     relatedWord: 'Wholesome',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['traits', 'dating'],
   },
   {
@@ -1174,7 +1046,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Run, bro',
     relatedWord: 'Danger',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['warning', 'dating'],
   },
   {
@@ -1183,7 +1054,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Uninvited passenger',
     relatedWord: 'Odd one out',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['awkward', 'friends'],
   },
   {
@@ -1192,7 +1062,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Sudden disappearance',
     relatedWord: 'Seen zone',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['chat', 'dating'],
   },
   {
@@ -1201,7 +1070,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'WhatsApp biodata agent',
     relatedWord: 'Ammavan',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['family', 'wedding'],
   },
   {
@@ -1210,7 +1078,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Biodata tournament',
     relatedWord: 'Wedding',
     category: 'relationships',
-    difficulty: 'medium',
     tags: ['matrimony', 'culture'],
   },
   {
@@ -1219,7 +1086,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Preliminary interview',
     relatedWord: 'Situationship',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['modern', 'dating'],
   },
   {
@@ -1228,7 +1094,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Awkward coffee',
     relatedWord: 'Crush',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['dating', 'nervous'],
   },
   {
@@ -1237,7 +1102,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Blue tick silence',
     relatedWord: 'Ghosting',
     category: 'relationships',
-    difficulty: 'easy',
     tags: ['chat', 'rejection'],
   },
   {
@@ -1246,7 +1110,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Midnight spiral',
     relatedWord: 'Delulu',
     category: 'relationships',
-    difficulty: 'hard',
     tags: ['psychology', 'dating'],
   },
 
@@ -1257,7 +1120,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Evening gossip',
     relatedWord: 'Coffee',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['drinks', 'daily'],
   },
   {
@@ -1266,7 +1128,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Deadline fuel',
     relatedWord: 'Tea',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['drinks', 'daily'],
   },
   {
@@ -1275,7 +1136,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Umbrella emergency',
     relatedWord: 'Cloudburst',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['weather', 'monsoon'],
   },
   {
@@ -1284,7 +1144,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Sky's bass boost",
     relatedWord: 'Lightning',
     category: 'tricky-words',
-    difficulty: 'medium',
     tags: ['weather', 'monsoon'],
   },
   {
@@ -1293,7 +1152,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Flowing waterbody',
     relatedWord: 'Stream',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['nature', 'water'],
   },
   {
@@ -1302,7 +1160,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Still water',
     relatedWord: 'Pond',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['nature', 'water'],
   },
   {
@@ -1311,7 +1168,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Route roulette',
     relatedWord: 'KSRTC',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['travel', 'public'],
   },
   {
@@ -1320,7 +1176,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Platform panic',
     relatedWord: 'Railway',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['travel', 'public'],
   },
   {
@@ -1329,7 +1184,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Food destination',
     relatedWord: 'Restaurant',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['kerala', 'dining'],
   },
   {
@@ -1338,7 +1192,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Menu confusion',
     relatedWord: 'Cafe',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['dining', 'food'],
   },
   {
@@ -1347,7 +1200,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Enclosed village water',
     relatedWord: 'Lake',
     category: 'tricky-words',
-    difficulty: 'hard',
     tags: ['water', 'nature'],
   },
   {
@@ -1356,7 +1208,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Pulley water source',
     relatedWord: 'Borewell',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['home', 'water'],
   },
   {
@@ -1365,7 +1216,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Deep underground tube',
     relatedWord: 'Well',
     category: 'tricky-words',
-    difficulty: 'medium',
     tags: ['home', 'drilling'],
   },
   {
@@ -1374,7 +1224,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Sky commute',
     relatedWord: 'Train',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['travel', 'fast'],
   },
   {
@@ -1383,7 +1232,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Rotating blades',
     relatedWord: 'Flight',
     category: 'tricky-words',
-    difficulty: 'medium',
     tags: ['travel', 'air'],
   },
   {
@@ -1392,7 +1240,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Water commute',
     relatedWord: 'Boat',
     category: 'tricky-words',
-    difficulty: 'hard',
     tags: ['transport', 'water'],
   },
   {
@@ -1401,7 +1248,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wind string',
     relatedWord: 'Bird',
     category: 'tricky-words',
-    difficulty: 'medium',
     tags: ['sky', 'game'],
   },
   {
@@ -1410,7 +1256,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Roof access',
     relatedWord: 'Stairs',
     category: 'tricky-words',
-    difficulty: 'easy',
     tags: ['home', 'tool'],
   },
 
@@ -1421,7 +1266,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Ninety-minute drama',
     relatedWord: 'Sevens',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['outdoor', 'match'],
   },
   {
@@ -1430,7 +1274,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Tea-break sport',
     relatedWord: 'Box cricket',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['outdoor', 'match'],
   },
   {
@@ -1439,7 +1282,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Controller rage',
     relatedWord: 'PES',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['esports', 'gaming'],
   },
   {
@@ -1448,7 +1290,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Goalkeeper's gamble",
     relatedWord: 'Shootout',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['football', 'rules'],
   },
   {
@@ -1457,7 +1298,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Linesman's headache",
     relatedWord: 'Flag',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['football', 'rules'],
   },
   {
@@ -1466,7 +1306,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Three-piece flex',
     relatedWord: 'Treble',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['achievement', 'sports'],
   },
   {
@@ -1475,7 +1314,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Replay police',
     relatedWord: 'Referee',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['technology', 'football'],
   },
   {
@@ -1484,7 +1322,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Early shower',
     relatedWord: 'Sent off',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['foul', 'match'],
   },
   {
@@ -1493,7 +1330,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Heart attack',
     relatedWord: 'Fergie time',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['clutch', 'football'],
   },
   {
@@ -1502,7 +1338,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Striker's trophy",
     relatedWord: 'Top scorer',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['award', 'sports'],
   },
   {
@@ -1511,7 +1346,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Mud field passion',
     relatedWord: 'Football',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['malabar', 'football'],
   },
   {
@@ -1520,7 +1354,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Turf underarm',
     relatedWord: 'Cricket',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['turf', 'weekend'],
   },
   {
@@ -1529,7 +1362,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Powdered board',
     relatedWord: 'Chess',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['indoor', 'club'],
   },
   {
@@ -1538,7 +1370,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'One tip one hand',
     relatedWord: 'Cricket',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['street', 'rules'],
   },
   {
@@ -1547,7 +1378,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Winter evening court',
     relatedWord: 'Tennis',
     category: 'sports-games',
-    difficulty: 'easy',
     tags: ['outdoor', 'recreation'],
   },
   {
@@ -1556,7 +1386,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Dice betrayal',
     relatedWord: 'Board game',
     category: 'sports-games',
-    difficulty: 'medium',
     tags: ['mobile', 'casual'],
   },
   {
@@ -1565,7 +1394,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Rope battle',
     relatedWord: 'Onam',
     category: 'sports-games',
-    difficulty: 'hard',
     tags: ['onam', 'strength'],
   },
 
@@ -1576,7 +1404,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wedding mess',
     relatedWord: 'Punjabi House',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'classic'],
   },
   {
@@ -1585,7 +1412,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Property',
     relatedWord: 'Kumbalangi Nights',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['crime', 'drama'],
   },
   {
@@ -1594,7 +1420,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Evidence gone',
     relatedWord: 'Memories',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['thriller', 'classic'],
   },
   {
@@ -1603,7 +1428,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Locked room',
     relatedWord: 'Romancham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['classic', 'psychological'],
   },
   {
@@ -1612,7 +1436,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Three stages',
     relatedWord: 'Hridayam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['romance', 'campus'],
   },
   {
@@ -1621,7 +1444,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Cousin gang',
     relatedWord: 'Premam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['youth', 'family'],
   },
   {
@@ -1630,7 +1452,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'College rowdies',
     relatedWord: 'Romancham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['action', 'comedy', 'recent'],
   },
   {
@@ -1639,7 +1460,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Spirit board',
     relatedWord: 'Aavesham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'horror'],
   },
   {
@@ -1648,7 +1468,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Family chaos',
     relatedWord: 'Joji',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['drama', 'family'],
   },
   {
@@ -1657,7 +1476,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Power game',
     relatedWord: 'Big B',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['action', 'politics'],
   },
   {
@@ -1666,7 +1484,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Taxi trouble',
     relatedWord: 'Neram',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['suspense', 'recent'],
   },
   {
@@ -1675,7 +1492,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wrong timing',
     relatedWord: 'Premam',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['comedy', 'thriller'],
   },
   {
@@ -1684,7 +1500,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Missing memory',
     relatedWord: 'Memories',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['police', 'thriller'],
   },
   {
@@ -1693,7 +1508,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Case files',
     relatedWord: 'Mumbai Police',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['crime', 'mystery'],
   },
   {
@@ -1702,7 +1516,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Midnight killer',
     relatedWord: 'Memories',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['serial killer', 'thriller'],
   },
   {
@@ -1711,7 +1524,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Race against time',
     relatedWord: 'Neram',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['thriller', 'drama'],
   },
   {
@@ -1720,7 +1532,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Beachside biryani',
     relatedWord: 'Charlie',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['food', 'family'],
   },
   {
@@ -1729,7 +1540,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Missing artist',
     relatedWord: 'Ustad Hotel',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['romance', 'adventure'],
   },
   {
@@ -1738,7 +1548,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Revenge slippers',
     relatedWord: 'Kumbalangi Nights',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'village'],
   },
   {
@@ -1747,7 +1556,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Robot appachan',
     relatedWord: 'Home',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['sci-fi', 'family'],
   },
   {
@@ -1756,7 +1564,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Tech family',
     relatedWord: 'Android Kunjappan',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['family', 'technology'],
   },
   {
@@ -1765,7 +1572,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Court case',
     relatedWord: 'Jana Gana Mana',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['satire', 'court'],
   },
   {
@@ -1774,7 +1580,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'College controversy',
     relatedWord: 'Nna Thaan Case Kodu',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['courtroom', 'politics'],
   },
   {
@@ -1783,7 +1588,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Political pressure',
     relatedWord: 'Iratta',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['survival', 'police'],
   },
   {
@@ -1792,7 +1596,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fake identity',
     relatedWord: 'Lucifer',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['crime', 'biopic'],
   },
   {
@@ -1801,7 +1604,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Revenge obsession',
     relatedWord: 'Kishkindha Kaandam',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['psychological', 'thriller'],
   },
   {
@@ -1810,7 +1612,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Missing bullets',
     relatedWord: 'Ela Veezha Poonchira',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['mystery', 'forest'],
   },
   {
@@ -1819,7 +1620,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Hill mystery',
     relatedWord: 'Kishkindha Kaandam',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['isolation', 'thriller'],
   },
   {
@@ -1828,7 +1628,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Black and white',
     relatedWord: 'Kantara',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['period', 'horror'],
   },
   {
@@ -1837,7 +1636,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Guna cave',
     relatedWord: '2018',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['survival', 'friendship'],
   },
   {
@@ -1846,7 +1644,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Flood rescue',
     relatedWord: 'Manjummel Boys',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['disaster', 'heroism'],
   },
   {
@@ -1855,7 +1652,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Desert survival',
     relatedWord: 'Manjummel Boys',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['survival', 'biopic'],
   },
   {
@@ -1864,7 +1660,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Local superhero',
     relatedWord: 'Thallumaala',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['superhero', 'comedy'],
   },
   {
@@ -1873,7 +1668,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Chain reaction',
     relatedWord: 'Aavesham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['action', 'youth'],
   },
   {
@@ -1882,7 +1676,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Hyderabad crush',
     relatedWord: 'Super Sharanya',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['romance', 'comedy'],
   },
   {
@@ -1891,7 +1684,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Engineering hostel',
     relatedWord: 'Premalu',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['college', 'hostel'],
   },
   {
@@ -1900,7 +1692,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'School memories',
     relatedWord: 'Thanneer Mathan Dinangal',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['coming-of-age', 'school'],
   },
   {
@@ -1909,7 +1700,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'College romance',
     relatedWord: 'Premam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['campus', 'romance'],
   },
   {
@@ -1918,7 +1708,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'School crush',
     relatedWord: 'Super Sharanya',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['school', 'comedy'],
   },
   {
@@ -1927,7 +1716,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Bestie confusion',
     relatedWord: 'Classmates',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['romance', 'campus'],
   },
   {
@@ -1936,7 +1724,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Commitment issues',
     relatedWord: 'Godfather',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'family'],
   },
   {
@@ -1945,7 +1732,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fake identity',
     relatedWord: 'Pulival Kalyanam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'cult'],
   },
   {
@@ -1954,7 +1740,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Bachelor gang',
     relatedWord: 'In Ghost House Inn',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'classic'],
   },
   {
@@ -1963,7 +1748,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Family rivalry',
     relatedWord: 'In Harihar Nagar',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['classic', 'comedy'],
   },
   {
@@ -1972,7 +1756,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Phone scam',
     relatedWord: 'In Harihar Nagar',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'classic'],
   },
   {
@@ -1981,7 +1764,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Tourist trouble',
     relatedWord: 'Thenmavin Kombath',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['classic', 'comedy'],
   },
   {
@@ -1990,7 +1772,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Gulf dreams',
     relatedWord: 'Sandesham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['cult', 'comedy'],
   },
   {
@@ -1999,7 +1780,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Political family',
     relatedWord: 'Nadodikattu',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['satire', 'politics'],
   },
   {
@@ -2008,7 +1788,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Haunted mansion',
     relatedWord: 'In Harihar Nagar',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'horror'],
   },
   {
@@ -2017,7 +1796,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Detective comedy',
     relatedWord: 'Meesha Madhavan',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'slapstick'],
   },
   {
@@ -2026,7 +1804,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Suitcase trouble',
     relatedWord: 'Kilukkam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'romance'],
   },
   {
@@ -2035,7 +1812,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Village thief',
     relatedWord: 'CID Moosa',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'romance'],
   },
   {
@@ -2044,7 +1820,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Village rivalry',
     relatedWord: 'Kilukkam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['classic', 'village'],
   },
   {
@@ -2053,7 +1828,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Land trouble',
     relatedWord: 'Nadodikattu',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'drama'],
   },
   {
@@ -2062,7 +1836,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Ray-ban mass',
     relatedWord: 'Narasimham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['mass', 'classic'],
   },
   {
@@ -2071,7 +1844,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Courtroom mass',
     relatedWord: 'Spadikam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['mass', 'action'],
   },
   {
@@ -2080,7 +1852,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Ego clash',
     relatedWord: 'Driving Licence',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['drama', 'action'],
   },
   {
@@ -2089,7 +1860,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fan versus star',
     relatedWord: 'Ayyappanum Koshiyum',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['drama', 'ego'],
   },
   {
@@ -2098,7 +1868,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Reunion secrets',
     relatedWord: 'Niram',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['college', 'mystery'],
   },
   {
@@ -2107,7 +1876,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: "Chandu's story",
     relatedWord: 'Kireedam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['period', 'classic'],
   },
   {
@@ -2116,7 +1884,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Feudal attitude',
     relatedWord: 'Spadikam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['drama', 'classic'],
   },
   {
@@ -2125,7 +1892,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Broken dreams',
     relatedWord: 'Devasuram',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['tragedy', 'classic'],
   },
   {
@@ -2134,7 +1900,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Rain romance',
     relatedWord: 'Namukku Parkkan Munthirithoppukal',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['romance', 'cult'],
   },
   {
@@ -2143,7 +1908,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Funeral chaos',
     relatedWord: 'Joji',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['satire', 'drama'],
   },
   {
@@ -2152,7 +1916,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Football family',
     relatedWord: 'Kumbalangi Nights',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['feel-good', 'sports'],
   },
   {
@@ -2161,7 +1924,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Election tricks',
     relatedWord: 'Sandesham',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['politics', 'comedy'],
   },
   {
@@ -2170,7 +1932,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Goat gang',
     relatedWord: 'Aadu 2',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['cult', 'comedy'],
   },
   {
@@ -2179,7 +1940,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Goat trouble',
     relatedWord: 'Aadu',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'sequel'],
   },
   {
@@ -2188,7 +1948,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Wedding chaos',
     relatedWord: 'Pulival Kalyanam',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'family'],
   },
   {
@@ -2197,7 +1956,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Visa marriage',
     relatedWord: 'My Boss',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'romance'],
   },
   {
@@ -2206,7 +1964,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Office romance',
     relatedWord: 'Two Countries',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['comedy', 'romance'],
   },
   {
@@ -2215,7 +1972,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Fake superstar',
     relatedWord: 'Driving Licence',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['cinema', 'comedy'],
   },
   {
@@ -2224,7 +1980,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Campus rebels',
     relatedWord: 'Puthiya Mukham',
     category: 'malayalam-movies',
-    difficulty: 'medium',
     tags: ['thriller', 'youth'],
   },
   {
@@ -2233,7 +1988,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Revenge squad',
     relatedWord: 'Lucifer',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['stylish', 'action'],
   },
   {
@@ -2242,7 +1996,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Campus transformation',
     relatedWord: 'Classmates',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['action', 'campus'],
   },
   {
@@ -2251,7 +2004,6 @@ export const INITIAL_WORDS: WordEntry[] = [
     hint: 'Star-studded showdown',
     relatedWord: 'Lucifer',
     category: 'malayalam-movies',
-    difficulty: 'easy',
     tags: ['multi-starrer', 'action'],
   },
 ]

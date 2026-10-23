@@ -384,7 +384,6 @@ describe('Phase 3: Playable Game Integration Tests', () => {
           word: 'Choreo Night',
           hint: 'Stage lights',
           category: customCategory,
-          difficulty: 'easy' as const,
           isCustom: true,
         },
       ]

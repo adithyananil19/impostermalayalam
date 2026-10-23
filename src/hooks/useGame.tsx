@@ -57,7 +57,7 @@ interface GameContextValue {
   // Custom Words & Categories
   addCustomCategory: (cat: { id: string; name: string; description?: string }) => { success: boolean; error?: string };
   deleteCustomCategory: (id: string) => void;
-  addCustomWord: (word: { word: string; hint: string; category: string; relatedWord?: string; difficulty?: 'easy' | 'medium' | 'hard' }) => { success: boolean; error?: string };
+  addCustomWord: (word: { word: string; hint: string; category: string; relatedWord?: string }) => { success: boolean; error?: string };
   editCustomWord: (id: string, updates: Partial<WordEntry>) => { success: boolean; error?: string };
   deleteCustomWord: (id: string) => void;
   importCustomData: (jsonString: string) => { success: boolean; error?: string; count?: { categories: number; words: number } };
@@ -255,7 +255,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
     hint: string;
     category: string;
     relatedWord?: string;
-    difficulty?: 'easy' | 'medium' | 'hard';
   }) {
     const word = entry.word.trim()
     const hint = entry.hint.trim()
@@ -271,7 +270,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
       hint,
       relatedWord: entry.relatedWord?.trim() || undefined,
       category,
-      difficulty: entry.difficulty || 'easy',
       tags: ['custom'],
       isCustom: true,
     }

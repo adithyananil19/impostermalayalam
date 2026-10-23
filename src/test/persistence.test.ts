@@ -161,7 +161,6 @@ describe('Phase 4: Persistence, Settings, and Custom Words', () => {
           word: 'Chaya Kadi',
           hint: 'Evening combo',
           category: 'custom-fest',
-          difficulty: 'easy',
           isCustom: true,
         },
       ]
@@ -179,8 +178,8 @@ describe('Phase 4: Persistence, Settings, and Custom Words', () => {
         { id: 'custom-cat', name: 'Custom', enabled: true, isCustom: true },
       ]
       const words: WordEntry[] = [
-        { id: 'w1', word: 'DefaultWord', hint: 'H1', category: 'default-cat', difficulty: 'easy' },
-        { id: 'w2', word: 'CustomWord', hint: 'H2', category: 'custom-cat', difficulty: 'easy', isCustom: true },
+        { id: 'w1', word: 'DefaultWord', hint: 'H1', category: 'default-cat' },
+        { id: 'w2', word: 'CustomWord', hint: 'H2', category: 'custom-cat', isCustom: true },
       ]
 
       const payload = exportCustomData(cats, words)
@@ -208,13 +207,11 @@ describe('Phase 4: Persistence, Settings, and Custom Words', () => {
             word: 'Stage Play',
             hint: 'Curtain call',
             category: 'campus-fest',
-            difficulty: 'easy',
           },
           {
             word: 'Tug of War',
             hint: 'Rope blister',
             category: 'campus-fest',
-            difficulty: 'medium',
           },
         ],
       })

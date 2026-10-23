@@ -226,9 +226,9 @@ Created and expanded the complete authentic word bank with **248 original entrie
 - **Malayalam Movies** (`malayalam-movies`): 76 blockbuster films covering classics, comedies, family entertainers, thrillers, coming-of-age, and recent hits!
 
 #### 2. Strict Content Quality Standards
-- Structured format: `{ id, word, hint, relatedWord, category, difficulty, tags }`.
+- Structured format: `{ id, word, hint, relatedWord, category, tags }`.
 - Culturally authentic, funny, casual Malayalam hints with zero dictionary definitions.
-- Balanced difficulty spread: easy, medium, and hard levels across all categories.
+- Difficulty completely removed per design simplification: no easy/medium/hard restrictions or confusing tiers for party players.
 - Guaranteed unique sequential IDs with zero collisions.
 - No direct answer-giving hints or circular references.
 
@@ -239,19 +239,18 @@ Created and expanded the complete authentic word bank with **248 original entrie
   - Every word, hint, and category is non-empty.
   - No hint repeats the secret word.
   - All 11 categories have at least 10+ entries.
-  - Difficulty distribution includes easy, medium, and hard.
   - Category filters and skip-word rotation operate accurately.
 
 ### Verified & Tested
 
 - `npm run typecheck` — ✅ 0 TypeScript errors.
-- `npm test` — ✅ **79/79 tests passing** across 5 test suites:
+- `npm test` — ✅ **78/78 tests passing** across 5 test suites:
   - `src/test/smoke.test.ts` (6 tests)
   - `src/test/gameEngine.test.ts` (39 tests)
   - `src/test/playableGame.test.ts` (8 tests)
   - `src/test/persistence.test.ts` (16 tests)
-  - `src/test/wordBank.test.ts` (10 tests)
-- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 86 modules transformed, 51.87 kB CSS, 284.35 kB JS in 959ms).
+  - `src/test/wordBank.test.ts` (9 tests)
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 86 modules transformed, 51.87 kB CSS, 279.21 kB JS).
 - Dev server running on `0.0.0.0:5173` for cross-device phone testing (`http://192.168.1.5:5173/`).
 
 ---

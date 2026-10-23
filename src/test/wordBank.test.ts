@@ -28,7 +28,6 @@ describe('Phase 5: Word Bank and Content Quality Verification', () => {
       expect(w.word && w.word.trim().length > 0).toBe(true)
       expect(w.hint && w.hint.trim().length > 0).toBe(true)
       expect(w.category && w.category.trim().length > 0).toBe(true)
-      expect(['easy', 'medium', 'hard']).toContain(w.difficulty)
     })
   })
 
@@ -55,13 +54,6 @@ describe('Phase 5: Word Bank and Content Quality Verification', () => {
       const count = counts[cat.id] || 0
       expect(count).toBeGreaterThanOrEqual(10)
     })
-  })
-
-  it('verifies difficulty distribution includes easy, medium, and hard', () => {
-    const difficulties = new Set(INITIAL_WORDS.map(w => w.difficulty))
-    expect(difficulties.has('easy')).toBe(true)
-    expect(difficulties.has('medium')).toBe(true)
-    expect(difficulties.has('hard')).toBe(true)
   })
 
   it('verifies word selection accurately respects category filters', () => {

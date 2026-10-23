@@ -34,7 +34,6 @@ const SAMPLE_WORD: WordEntry = {
   hint: 'Layered addiction',
   relatedWord: 'Beef fry',
   category: 'food-bakery',
-  difficulty: 'easy',
 }
 
 describe('PHASE 2 — Game Engine & Rules Unit Tests', () => {
@@ -236,7 +235,6 @@ describe('PHASE 2 — Game Engine & Rules Unit Tests', () => {
         hint: 'Breakfast tower',
         relatedWord: 'Kadala',
         category: 'food-bakery',
-        difficulty: 'easy',
       }
 
       const updated = updateRolesForNewWord(roles, newWord, 'vague_hint')
