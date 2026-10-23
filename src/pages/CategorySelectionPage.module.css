@@ -6,6 +6,7 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--clr-text-primary);
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-2);
 }
 
@@ -27,16 +28,20 @@
 }
 
 .bulkBtn {
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   color: var(--clr-accent);
-  font-weight: 500;
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-sm);
-  transition: background var(--transition-fast);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(198, 243, 106, 0.2);
+  background: var(--clr-accent-subtle);
+  transition: all var(--transition-fast);
 }
 
 .bulkBtn:hover {
-  background: var(--clr-accent-subtle);
+  background: rgba(198, 243, 106, 0.22);
+  border-color: var(--clr-accent);
 }
 
 .grid {
@@ -53,23 +58,27 @@
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  transition: all var(--transition-fast);
   position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   -webkit-tap-highlight-color: transparent;
 }
 
 .catCard:hover {
   background: var(--clr-surface-2);
-  border-color: #363b36;
+  border-color: var(--clr-border-light);
+  transform: translateY(-1px);
 }
 
 .selected {
   border-color: var(--clr-accent);
   background: var(--clr-accent-subtle);
+  box-shadow: 0 0 20px -6px rgba(198, 243, 106, 0.25), inset 0 1px 0 rgba(198, 243, 106, 0.2);
 }
 
 .selected:hover {
   background: rgba(198, 243, 106, 0.16);
+  border-color: var(--clr-accent);
 }
 
 .catTop {
@@ -81,21 +90,24 @@
 }
 
 .catName {
+  font-family: var(--font-display);
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--clr-text-primary);
+  letter-spacing: -0.01em;
 }
 
 .catDesc {
   font-size: var(--text-sm);
   color: var(--clr-text-secondary);
   line-height: 1.4;
+  padding-right: var(--space-6);
 }
 
 .checkmark {
   position: absolute;
-  top: var(--space-3);
-  right: var(--space-3);
+  top: var(--space-4);
+  right: var(--space-4);
   width: 22px;
   height: 22px;
   background: var(--clr-accent);
@@ -103,5 +115,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #101110;
+  color: #0d0f0d;
+  box-shadow: 0 0 10px rgba(198, 243, 106, 0.5);
 }

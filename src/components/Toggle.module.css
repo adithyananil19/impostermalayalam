@@ -4,17 +4,17 @@
   justify-content: space-between;
   gap: var(--space-4);
   cursor: pointer;
-  padding: var(--space-4) 0;
+  padding: var(--space-3) 0;
   -webkit-tap-highlight-color: transparent;
 }
 
 .wrapper:focus-within .track {
   outline: 2px solid var(--clr-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -28,7 +28,7 @@
 .label {
   font-size: var(--text-base);
   color: var(--clr-text-primary);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .description {
@@ -39,31 +39,32 @@
 .track {
   position: relative;
   flex-shrink: 0;
-  width: 44px;
-  height: 26px;
+  width: 48px;
+  height: 28px;
   background: var(--clr-surface-2);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-full);
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .on {
   background: var(--clr-accent);
   border-color: var(--clr-accent);
+  box-shadow: 0 0 16px -2px rgba(198, 243, 106, 0.4);
 }
 
 .thumb {
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: var(--clr-text-muted);
   border-radius: var(--radius-full);
   transition: transform var(--transition-fast), background var(--transition-fast);
 }
 
 .on .thumb {
-  transform: translateX(18px);
-  background: #101110;
+  transform: translateX(20px);
+  background: #0d0f0d;
 }

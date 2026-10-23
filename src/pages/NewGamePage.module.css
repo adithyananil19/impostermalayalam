@@ -6,6 +6,7 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--clr-text-primary);
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-1);
 }
 
@@ -26,20 +27,30 @@
   gap: var(--space-4);
   padding: var(--space-4) var(--space-4);
   cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-xl);
+}
+
+.stepCard:hover .chevron {
+  transform: translateX(2px);
+  color: var(--clr-text-primary);
 }
 
 .stepNum {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   background: var(--clr-accent-subtle);
+  border: 1px solid rgba(198, 243, 106, 0.25);
   color: var(--clr-accent);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 12px -2px rgba(198, 243, 106, 0.2);
 }
 
 .stepBody {
@@ -50,9 +61,11 @@
 }
 
 .stepTitle {
+  font-family: var(--font-display);
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--clr-text-primary);
+  letter-spacing: -0.01em;
 }
 
 .stepDesc {
@@ -63,4 +76,5 @@
 .chevron {
   color: var(--clr-text-muted);
   flex-shrink: 0;
+  transition: transform var(--transition-fast), color var(--transition-fast);
 }
