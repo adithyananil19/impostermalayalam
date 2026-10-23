@@ -1,45 +1,94 @@
 import { useNavigate } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
+import { useGame } from '../hooks/useGame'
+import { getLeaderboard } from '../game/scoring'
 import styles from './ScorePage.module.css'
-
-const MOCK_SCORES = [
-  { name: 'Arjun', points: 4 },
-  { name: 'Rohan', points: 3 },
-  { name: 'Meera', points: 3 },
-  { name: 'Sneha', points: 1 },
-]
 
 export default function ScorePage() {
   const navigate = useNavigate()
+  const { state, nextRound, startGame, restartGame } = useGame()
 
-  const sorted = [...MOCK_SCORES].sort((a, b) => b.points - a.points)
+  if (state.players.length === 0) {
+    return (
+      <PageLayout centered>
+        <div className={styles.emptyState}>
+          <p className={styles.emptyText}>No active game session found.</p>
+          <Button variant="primary" onClick={() => navigate('/players')}>
+            Start New Game
+          </Button>
+        </div>
+      </PageLayout>
+    )
+  }
+
+  const leaderboard = getLeaderboard(state.players, state.scores)
+  const completedCount = state.completedRounds.length
+  const totalRounds = state.settings.roundCount
+  const isMulti = state.settings.gameMode === 'multi' && totalRounds > 1
+  const isGameOver =
+    state.phase === 'game_over' || (totalRounds > 0 && completedCount >= totalRounds)
+
+  const roundText =
+    isMulti && totalRounds > 0
+      ? isGameOver
+        ? `Session Complete · All ${totalRounds} Rounds Played`
+        : `Round ${completedCount} of ${totalRounds}`
+      : `Session Leaderboard (${completedCount} ${completedCount === 1 ? 'round' : 'rounds'})`
+
+  function handleNextRound() {
+    if (isMulti && !isGameOver) {
+      const res = nextRound()
+      if (res.success) {
+        navigate('/reveal')
+      } else {
+        navigate('/score')
+      }
+    } else {
+      const res = startGame()
+      if (res.success) {
+        navigate('/reveal')
+      } else {
+        navigate('/players')
+      }
+    }
+  }
+
+  function handleHome() {
+    restartGame()
+    navigate('/')
+  }
 
   return (
     <PageLayout
       footer={
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-          <Button variant="primary" size="lg" fullWidth onClick={() => navigate('/reveal')}>
-            Next Round
+        <div className={styles.footerActions}>
+          <Button variant="primary" size="lg" fullWidth onClick={handleNextRound}>
+            {isMulti && !isGameOver
+              ? `Next Round (${completedCount + 1} of ${totalRounds}) →`
+              : 'Play Again'}
           </Button>
-          <Button variant="secondary" size="md" fullWidth onClick={() => navigate('/')}>
-            End Session
+          <Button variant="ghost" size="sm" fullWidth onClick={handleHome}>
+            Back to Home
           </Button>
         </div>
       }
     >
       <div className={styles.intro}>
-        <p className={styles.round}>Round 1 of 3</p>
+        <p className={styles.round}>{roundText}</p>
         <h2 className={styles.heading}>Leaderboard</h2>
       </div>
 
       <ol className={styles.list}>
-        {sorted.map((entry, idx) => (
-          <li key={entry.name} className={[styles.row, idx === 0 ? styles.first : ''].filter(Boolean).join(' ')}>
+        {leaderboard.map((entry, idx) => (
+          <li
+            key={entry.player.id}
+            className={[styles.row, idx === 0 ? styles.first : ''].filter(Boolean).join(' ')}
+          >
             <span className={styles.rank}>
-              {idx === 0 ? '🏆' : `#${idx + 1}`}
+              {idx === 0 ? '🏆' : `#${entry.rank}`}
             </span>
-            <span className={styles.name}>{entry.name}</span>
+            <span className={styles.name}>{entry.player.name}</span>
             <span className={styles.points}>{entry.points} pts</span>
           </li>
         ))}

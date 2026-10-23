@@ -5,48 +5,98 @@ import BackButton from '../components/BackButton'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
 import Card from '../components/Card'
+import { useGame } from '../hooks/useGame'
 import styles from './QuickVerdictPage.module.css'
-
-const MOCK_GAME_DATA = {
-  imposterName: 'Sneha',
-  secretWord: 'Porotta',
-  category: 'Food & Bakery',
-  imposterHint: 'Gym enemy',
-}
 
 export default function QuickVerdictPage() {
   const navigate = useNavigate()
+  const { state, quickVerdict, nextRound, startGame, restartGame } = useGame()
   // null = pending choice, 'no' = imposter escaped, 'yes' = imposter caught
   const [verdict, setVerdict] = useState<'yes' | 'no' | null>(null)
 
+  const round = state.currentRound || state.completedRounds[state.completedRounds.length - 1]
+
+  if (!round) {
+    return (
+      <PageLayout centered>
+        <div style={{ textAlign: 'center', padding: 'var(--space-6)' }}>
+          <p style={{ color: 'var(--clr-text-secondary)', marginBottom: 'var(--space-4)' }}>
+            No active round found.
+          </p>
+          <Button variant="primary" onClick={() => navigate('/players')}>
+            Start New Game
+          </Button>
+        </div>
+      </PageLayout>
+    )
+  }
+
+  const imposterRoles = round.roles.filter(r => r.role === 'imposter')
+  const imposterNames = imposterRoles
+    .map(r => state.players.find(p => p.id === r.playerId)?.name || 'Unknown')
+    .join(', ')
+
+  const secretWord = round.word.word
+  const category = round.word.category
+  const imposterHint =
+    round.word.hint ||
+    (imposterRoles[0]?.displayInfo && imposterRoles[0]?.displayInfo !== 'IMPOSTER'
+      ? imposterRoles[0].displayInfo
+      : 'None')
+
+  const isMulti = state.settings.gameMode === 'multi' && state.settings.roundCount > 1
+  const isFinished = state.settings.roundCount > 0 && state.completedRounds.length >= state.settings.roundCount
+
   function handleCaught() {
-    // If caught, go straight to the Results screen where players won!
+    quickVerdict(true)
     navigate('/results')
   }
 
   function handleEscaped() {
-    // If not caught, reveal the imposter right here
+    quickVerdict(false)
     setVerdict('no')
   }
 
-  function handleResetVerdict() {
-    setVerdict(null)
+  function handleNextRound() {
+    if (isMulti && !isFinished) {
+      const res = nextRound()
+      if (res.success) {
+        navigate('/reveal')
+      } else {
+        navigate('/score')
+      }
+    } else {
+      const res = startGame()
+      if (res.success) {
+        navigate('/reveal')
+      } else {
+        navigate('/players')
+      }
+    }
+  }
+
+  function handleHome() {
+    restartGame()
+    navigate('/')
   }
 
   // --- View: Imposter Got Away Reveal ---
   if (verdict === 'no') {
     return (
       <PageLayout
-        header={<BackButton label="Change" to="/quick-verdict" />}
         footer={
           <div className={styles.footerActions}>
-            <Button variant="primary" size="lg" fullWidth onClick={() => navigate('/reveal')}>
-              Play Again
+            <Button variant="primary" size="lg" fullWidth onClick={handleNextRound}>
+              {isMulti && !isFinished
+                ? `Next Round (${state.completedRounds.length + 1} of ${state.settings.roundCount}) →`
+                : 'Play Again'}
             </Button>
-            <Button variant="secondary" size="md" fullWidth onClick={() => navigate('/score')}>
-              View Leaderboard
-            </Button>
-            <Button variant="ghost" size="sm" fullWidth onClick={() => navigate('/')}>
+            {(isMulti || state.settings.trackScores) && (
+              <Button variant="secondary" size="md" fullWidth onClick={() => navigate('/score')}>
+                {isFinished ? 'View Final Leaderboard 🏆' : 'View Leaderboard'}
+              </Button>
+            )}
+            <Button variant="ghost" size="sm" fullWidth onClick={handleHome}>
               Back to Home
             </Button>
           </div>
@@ -62,8 +112,10 @@ export default function QuickVerdictPage() {
           <div className={styles.revealCard}>
             <p className={styles.cardHeader}>The Imposter Was</p>
             <div className={styles.imposterHero}>
-              <div className={styles.imposterAvatar}>{MOCK_GAME_DATA.imposterName[0]}</div>
-              <span className={styles.imposterName}>{MOCK_GAME_DATA.imposterName}</span>
+              <div className={styles.imposterAvatar}>
+                {imposterNames ? imposterNames[0].toUpperCase() : '?'}
+              </div>
+              <span className={styles.imposterName}>{imposterNames}</span>
               <Badge variant="danger">Imposter</Badge>
             </div>
 
@@ -72,22 +124,18 @@ export default function QuickVerdictPage() {
             <div className={styles.detailsGrid}>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Secret Word</span>
-                <span className={styles.detailValueAccent}>{MOCK_GAME_DATA.secretWord}</span>
+                <span className={styles.detailValueAccent}>{secretWord}</span>
               </div>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Imposter's Clue</span>
-                <span className={styles.detailValue}>{MOCK_GAME_DATA.imposterHint}</span>
+                <span className={styles.detailValue}>{imposterHint}</span>
               </div>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Category</span>
-                <span className={styles.detailValue}>{MOCK_GAME_DATA.category}</span>
+                <span className={styles.detailValue}>{category}</span>
               </div>
             </div>
           </div>
-
-          <button className={styles.changeBtn} onClick={handleResetVerdict}>
-            ← Change verdict / test again
-          </button>
         </div>
       </PageLayout>
     )

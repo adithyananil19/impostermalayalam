@@ -21,6 +21,29 @@
   letter-spacing: 0.1em;
 }
 
+.skipAlert {
+  background: var(--clr-accent-subtle);
+  border: 1px solid var(--clr-accent);
+  color: var(--clr-accent);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .statusBox {
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
@@ -110,6 +133,39 @@
 .timerBtns {
   display: flex;
   gap: var(--space-3);
+}
+
+.untimedNotice {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--clr-text-muted);
+  padding: var(--space-6) var(--space-4);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-border);
+}
+
+.skipWordBox {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
+}
+
+.skipWordBtn {
+  background: none;
+  border: none;
+  color: var(--clr-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.skipWordBtn:hover {
+  color: var(--clr-accent);
+  background: rgba(198, 243, 106, 0.08);
 }
 
 .footerActions {

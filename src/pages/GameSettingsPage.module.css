@@ -71,7 +71,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
-.modeCard:hover:not(.modeLocked) {
+.modeCard:hover {
   background: var(--clr-surface-2);
   border-color: var(--clr-border-light);
 }
@@ -80,12 +80,6 @@
   border-color: var(--clr-accent);
   background: var(--clr-accent-subtle);
   box-shadow: 0 0 18px -4px rgba(198, 243, 106, 0.25), inset 0 1px 0 rgba(198, 243, 106, 0.2);
-}
-
-.modeLocked {
-  opacity: 0.55;
-  cursor: not-allowed;
-  border-style: dashed;
 }
 
 .modeTop {
@@ -115,6 +109,14 @@
   font-size: var(--text-xs);
   color: var(--clr-text-secondary);
   line-height: 1.4;
+}
+
+.multiRoundControls {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
 }
 
 /* ── Stepper ── */

@@ -44,7 +44,7 @@
    - **`🎲 Fill with Malayalee Names`** button for instant 1-tap authentic name population without duplicates.
    - Live name validation (prevents duplicates, requires all names filled).
 3. **Step 3: All-in-One Expanded Settings (`/settings`)**:
-   - **Game Mode Selection**: Single Round (Active) vs Multiple Rounds (🔒 Locked with "Coming in Phase 3" badge).
+   - **Game Mode Selection**: Single Round vs Multiple Rounds (with round count stepper).
    - Imposter configuration (count stepper + information mode).
    - Discussion timer & duration controls.
    - Role reveal style (Tap vs Hold).
@@ -126,10 +126,80 @@
 
 ---
 
+## Phase 3 — Complete the playable game ✅ COMPLETE
+
+**Completed:** 2026-10-24
+
+### What was done
+
+#### 1. Real State Machine Integration (`src/hooks/useGame.tsx`)
+- Connected `useGame` hook directly to `gameReducer` and `createInitialState`.
+- Implemented real actions: `startGame()`, `advanceReveal()`, `startVoting()`, `submitVote()`, `finishVoting()`, `quickVerdict()`, `skipWord()`, `nextRound()`, `restartGame()`, `cancelGame()`.
+- Guaranteed state immutability and eliminated all mock data from the active game loop.
+
+#### 2. Game Settings & Mode Selection (`src/pages/GameSettingsPage.tsx`)
+- Unlocked **Single Round** vs **Multiple Rounds** game mode selector.
+- Added round count stepper (2–10 rounds) for multi-round sessions with automatic score tracking.
+- Embedded category selection right on the settings page with 1-tap select all and clear controls.
+- Real `startGame()` invocation with comprehensive config validation and inline error display.
+
+#### 3. Privacy-Preserving Pass-the-Phone Role Reveal (`src/pages/RoleRevealPage.tsx`)
+- Implemented turn-based pass-the-phone sequence for 3 to 20 players.
+- Supported both reveal styles:
+  - **Tap to reveal** / tap to hide.
+  - **Press-and-hold to reveal** / release to hide.
+- Isolated player information using `getPlayerPrivateInfo` so no subsequent player or onlooker can view previous player roles.
+- Intermediary "Pass the phone to [Next Player]" privacy gate screen between players.
+
+#### 4. Discussion Screen with Privacy (`src/pages/DiscussionPage.tsx`)
+- Strictly conceals the secret word to prevent screen peeking.
+- Configurable countdown timer with real-time progress bar, pulse animation on final 10 seconds, and manual continue option.
+- Skip Word action (`skipWord()`) to replace controversial or unfamiliar words without revealing imposters.
+- Direct dual paths: **"Begin Voting →"** for formal voting or **"Skip Voting (Quick Verdict) →"** for consensus verdict.
+
+#### 5. Pass-the-Phone Voting Screen (`src/pages/VotingPage.tsx`)
+- Private turn-by-turn voter sequence with confirmation gates ("Hand phone to [Player]").
+- Real `submitVote(voterId, targetId)` dispatch with duplicate vote prevention.
+- Automatic transition on last voter via `finishVoting()` to vote resolution and results.
+
+#### 6. Real Results & Vote Breakdown (`src/pages/ResultsPage.tsx`)
+- Displays real round outcome (Players win! / Imposter wins!).
+- Reveals actual secret word, imposter identity, and eliminated player.
+- Dynamic vote tally listing all votes descending, highlighting the eliminated player.
+- Clean summary card when round was resolved via Quick Verdict.
+- Context-aware footer buttons: "Next Round (Round X of Y)", "View Leaderboard", "Play Again", and "Back to Home".
+
+#### 7. Quick Verdict Consensus Screen (`src/pages/QuickVerdictPage.tsx`)
+- Real `quickVerdict(true)` (caught) routing directly to Results.
+- Real `quickVerdict(false)` (escaped) displaying dramatic imposter escape card with real player avatar, secret word, clue, and category.
+- Session-aware next round and leaderboard navigation.
+
+#### 8. Session Leaderboard (`src/pages/ScorePage.tsx`)
+- Real session score tracking via `getLeaderboard(state.players, state.scores)`.
+- Ranked list with 🏆 trophy styling for 1st place and point tallies.
+- Session round progress (`Round X of Y` / `Session Complete`).
+- Continuation to next round or rematch.
+
+### Verified & Tested
+
+- `npm run typecheck` — ✅ 0 TypeScript errors.
+- `npm test` — ✅ **51/51 tests passing** across 3 suites:
+  - `src/test/smoke.test.ts` (6 tests)
+  - `src/test/gameEngine.test.ts` (39 tests)
+  - `src/test/playableGame.test.ts` (6 comprehensive end-to-end integration tests):
+    - Full 3-player playthrough (minimum scale) with formal voting and tie resolution.
+    - Full 4-player playthrough with Quick Verdict (caught & escaped flows).
+    - Full 10-player multi-round session across 3 consecutive rounds with cumulative score tracking and leaderboard.
+    - Full 20-player playthrough (maximum scale) verifying performance, role distribution (3 imposters, 17 regulars), and unanimous vote tally.
+    - Mid-round Skip Word action updating roles and secret word cleanly.
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 83 modules, 47.82 kB CSS, 233.04 kB JS).
+- Git repository synced: `https://github.com/adithyananil19/impostermalayalam.git`.
+
+---
+
 ## What has NOT been done yet
 
-- Phase 3: Connect game engine to the UI (wire up state machine to pages, pass-the-phone reveal, interactive voting & results) — **pending approval**.
-- Phase 4: Settings persistence, custom word management, localStorage — pending.
+- Phase 4: Settings persistence, custom word management, localStorage — **pending approval**.
 - Phase 5: Complete word bank (all 171+ entries across 11 categories) — pending.
 - Phase 6: PWA, offline support, accessibility QA — pending.
 - Phase 7: Deployment — pending.

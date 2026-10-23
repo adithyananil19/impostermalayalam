@@ -46,7 +46,7 @@ const VOTE_OUTCOMES: { value: VoteOutcome; label: string; desc: string }[] = [
 
 export default function GameSettingsPage() {
   const navigate = useNavigate()
-  const { state, updateSettings } = useGame()
+  const { state, updateSettings, startGame } = useGame()
   const s = state.settings
 
   const [gameMode, setGameMode] = useState<GameMode>(s.gameMode || 'single')
@@ -56,6 +56,9 @@ export default function GameSettingsPage() {
   const [timerSeconds, setTimerSeconds] = useState(s.timerSeconds)
   const [revealStyle, setRevealStyle] = useState<RevealStyle>(s.revealStyle)
   const [voteOutcome, setVoteOutcome] = useState<VoteOutcome>(s.voteOutcome)
+  const [roundCount, setRoundCount] = useState(s.roundCount || 3)
+  const [trackScores] = useState(s.trackScores)
+  const [configError, setConfigError] = useState<string | null>(null)
 
   // Default: all categories selected if none selected yet
   const [selectedCats, setSelectedCats] = useState<Set<string>>(() => {
@@ -86,6 +89,10 @@ export default function GameSettingsPage() {
   }
 
   function handleStartGame() {
+    setConfigError(null)
+    const effectiveRoundCount = gameMode === 'multi' ? Math.max(roundCount, 2) : 1
+    const effectiveTrackScores = gameMode === 'multi' ? true : trackScores
+
     updateSettings({
       gameMode,
       imposterCount,
@@ -94,8 +101,17 @@ export default function GameSettingsPage() {
       timerSeconds,
       revealStyle,
       voteOutcome,
+      roundCount: effectiveRoundCount,
+      trackScores: effectiveTrackScores,
       enabledCategories: [...selectedCats],
     })
+
+    const result = startGame()
+    if (!result.success) {
+      setConfigError(result.error || 'Failed to start game.')
+      return
+    }
+
     navigate('/reveal')
   }
 
@@ -106,6 +122,7 @@ export default function GameSettingsPage() {
       header={<BackButton to="/players" label="Player Names" />}
       footer={
         <div>
+          {configError && <p className={styles.catWarning}>⚠️ {configError}</p>}
           {!canStart && (
             <p className={styles.catWarning}>⚠️ Please select at least one category to play.</p>
           )}
@@ -144,23 +161,61 @@ export default function GameSettingsPage() {
           >
             <div className={styles.modeTop}>
               <span className={styles.modeTitle}>Single Round</span>
-              <span className={styles.activeDot} />
+              {gameMode === 'single' && <span className={styles.activeDot} />}
             </div>
             <p className={styles.modeDesc}>
               Classic quick match. Discussion, voting, and instant imposter reveal.
             </p>
           </div>
 
-          <div className={[styles.modeCard, styles.modeLocked].join(' ')}>
+          <div
+            className={[styles.modeCard, gameMode === 'multi' ? styles.modeActive : ''].join(' ')}
+            onClick={() => setGameMode('multi')}
+            role="button"
+          >
             <div className={styles.modeTop}>
               <span className={styles.modeTitle}>Multiple Rounds</span>
-              <Badge variant="default">🔒 Phase 3</Badge>
+              {gameMode === 'multi' ? (
+                <span className={styles.activeDot} />
+              ) : (
+                <Badge variant="accent">Session Mode</Badge>
+              )}
             </div>
             <p className={styles.modeDesc}>
               Accumulate points across rounds and compete on the session leaderboard.
             </p>
           </div>
         </div>
+
+        {gameMode === 'multi' && (
+          <div className={styles.multiRoundControls}>
+            <div className={styles.counterRow}>
+              <div className={styles.counterInfo}>
+                <span className={styles.counterTitle}>Total Rounds</span>
+                <span className={styles.counterSubtitle}>Points tracked across all rounds</span>
+              </div>
+              <div className={styles.stepper}>
+                <button
+                  className={styles.stepBtn}
+                  onClick={() => setRoundCount(r => Math.max(2, r - 1))}
+                  disabled={roundCount <= 2}
+                  type="button"
+                >
+                  −
+                </button>
+                <span className={styles.stepValue}>{roundCount}</span>
+                <button
+                  className={styles.stepBtn}
+                  onClick={() => setRoundCount(r => Math.min(10, r + 1))}
+                  disabled={roundCount >= 10}
+                  type="button"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       <Divider />
@@ -186,6 +241,7 @@ export default function GameSettingsPage() {
               onClick={() => setImposterCount(c => Math.max(1, c - 1))}
               disabled={imposterCount <= 1}
               aria-label="Decrease imposters"
+              type="button"
             >
               −
             </button>
@@ -195,6 +251,7 @@ export default function GameSettingsPage() {
               onClick={() => setImposterCount(c => Math.min(maxImposters, c + 1))}
               disabled={imposterCount >= maxImposters}
               aria-label="Increase imposters"
+              type="button"
             >
               +
             </button>
@@ -238,6 +295,7 @@ export default function GameSettingsPage() {
                 className={styles.stepBtn}
                 onClick={() => setTimerSeconds(t => Math.max(30, t - 30))}
                 disabled={timerSeconds <= 30}
+                type="button"
               >
                 −
               </button>
@@ -246,6 +304,7 @@ export default function GameSettingsPage() {
                 className={styles.stepBtn}
                 onClick={() => setTimerSeconds(t => Math.min(600, t + 30))}
                 disabled={timerSeconds >= 600}
+                type="button"
               >
                 +
               </button>

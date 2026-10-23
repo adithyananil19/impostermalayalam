@@ -3,12 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
+import { useGame } from '../hooks/useGame'
 import styles from './DiscussionPage.module.css'
 
 export default function DiscussionPage() {
   const navigate = useNavigate()
-  const [timeLeft, setTimeLeft] = useState(120)
-  const [running, setRunning] = useState(false)
+  const { state, startVoting, skipWord } = useGame()
+
+  const currentRound = state.currentRound
+  const timerEnabled = state.settings.timerEnabled
+  const initialSeconds = state.settings.timerSeconds || 120
+
+  const [timeLeft, setTimeLeft] = useState(initialSeconds)
+  const [running, setRunning] = useState(timerEnabled)
+  const [skipNotice, setSkipNotice] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
@@ -23,7 +31,9 @@ export default function DiscussionPage() {
         return t - 1
       })
     }, 1000)
-    return () => clearInterval(intervalRef.current!)
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [running])
 
   function formatTime(s: number) {
@@ -32,12 +42,32 @@ export default function DiscussionPage() {
     return `${m}:${sec.toString().padStart(2, '0')}`
   }
 
+  function handleStartVoting() {
+    startVoting()
+    navigate('/voting')
+  }
+
+  function handleSkipWord() {
+    const res = skipWord()
+    if (res.success) {
+      setSkipNotice(true)
+      setTimeout(() => setSkipNotice(false), 3000)
+    }
+  }
+
+  const categoryName = currentRound?.word?.category
+    ? currentRound.word.category
+        .split('-')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ')
+    : 'All Categories'
+
   return (
     <PageLayout
       footer={
         <div className={styles.footerActions}>
-          <Button variant="primary" size="lg" fullWidth onClick={() => navigate('/voting')}>
-            Start Voting
+          <Button variant="primary" size="lg" fullWidth onClick={handleStartVoting}>
+            Start Voting →
           </Button>
           <Button
             variant="secondary"
@@ -53,8 +83,14 @@ export default function DiscussionPage() {
       <div className={styles.content}>
         <div className={styles.topRow}>
           <span className={styles.stepBadge}>Discussion</span>
-          <Badge variant="accent">Category: Food & Bakery</Badge>
+          <Badge variant="accent">Category: {categoryName}</Badge>
         </div>
+
+        {skipNotice && (
+          <div className={styles.skipAlert} role="status">
+            ✨ Word has been skipped! New secret word active.
+          </div>
+        )}
 
         <div className={styles.statusBox}>
           <div className={styles.statusIcon} aria-hidden="true">
@@ -77,7 +113,7 @@ export default function DiscussionPage() {
           </div>
           <h2 className={styles.statusTitle}>Discussion in Progress</h2>
           <p className={styles.statusHint}>
-            Take turns giving indirect clues and interrogating suspicious answers. Spot the imposter before voting!
+            Take turns giving subtle clues. Ask questions, spot hesitation, and find the liar!
           </p>
           <div className={styles.shieldNotice}>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -93,27 +129,45 @@ export default function DiscussionPage() {
           </div>
         </div>
 
-        <div className={styles.timerSection}>
-          <div className={styles.timerDisplay}>{formatTime(timeLeft)}</div>
-          <div className={styles.timerBtns}>
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setRunning(r => !r)}
-            >
-              {running ? 'Pause' : timeLeft === 120 ? 'Start Timer' : 'Resume'}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setRunning(false)
-                setTimeLeft(120)
-              }}
-            >
-              Reset
-            </Button>
+        {/* ── TIMER SECTION ── */}
+        {timerEnabled ? (
+          <div className={styles.timerSection}>
+            <div className={styles.timerDisplay}>{formatTime(timeLeft)}</div>
+            <div className={styles.timerBtns}>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setRunning(r => !r)}
+              >
+                {running ? 'Pause' : timeLeft === 0 ? 'Restart' : 'Resume'}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setRunning(false)
+                  setTimeLeft(initialSeconds)
+                }}
+              >
+                Reset
+              </Button>
+            </div>
           </div>
+        ) : (
+          <div className={styles.untimedNotice}>
+            <span>Discussion is untimed. When everyone has spoken, proceed to voting.</span>
+          </div>
+        )}
+
+        {/* ── SKIP WORD CONTROL ── */}
+        <div className={styles.skipWordBox}>
+          <button
+            type="button"
+            className={styles.skipWordBtn}
+            onClick={handleSkipWord}
+          >
+            🔄 Skip Word (keeps current roles)
+          </button>
         </div>
       </div>
     </PageLayout>
