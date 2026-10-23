@@ -166,3 +166,25 @@ export interface GameStats {
   regularWins: number;
   lastPlayedAt?: string;
 }
+
+// ─── Preferences & Storage ───────────────────────────────────────────────────
+
+export interface UserPreferences {
+  reduceMotion: boolean;
+  soundEnabled: boolean;
+  hapticFeedback: boolean;
+}
+
+export const DEFAULT_PREFERENCES: UserPreferences = {
+  reduceMotion: false,
+  soundEnabled: true,
+  hapticFeedback: true,
+};
+
+export interface CustomDataExport {
+  version: number;
+  exportedAt: string;
+  categories: Category[];
+  words: WordEntry[];
+}
+

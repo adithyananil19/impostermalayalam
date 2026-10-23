@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
+import { useGame } from '../hooks/useGame'
 import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const { stats } = useGame()
 
   return (
     <PageLayout
@@ -45,6 +47,14 @@ export default function HomePage() {
           </h1>
           <p className={styles.subtitle}>One word. One liar. No trust.</p>
         </div>
+
+        {stats.roundsPlayed > 0 && (
+          <div style={{ marginTop: 'var(--space-2)' }}>
+            <Badge variant="default">
+              🎯 {stats.roundsPlayed} {stats.roundsPlayed === 1 ? 'round' : 'rounds'} played · {stats.imposterWins} imposter {stats.imposterWins === 1 ? 'win' : 'wins'}
+            </Badge>
+          </div>
+        )}
       </div>
 
       <div className={styles.actions}>

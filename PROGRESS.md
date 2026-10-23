@@ -138,27 +138,23 @@
 - Guaranteed state immutability and eliminated all mock data from the active game loop.
 
 #### 2. Game Settings & Mode Selection (`src/pages/GameSettingsPage.tsx`)
-- Unlocked **Single Round** vs **Multiple Rounds** game mode selector.
-- Added round count stepper (2–10 rounds) for multi-round sessions with automatic score tracking.
+- Single Round vs Multiple Rounds game mode selector.
+- Round count stepper (2–10 rounds) for multi-round sessions with automatic score tracking.
 - Embedded category selection right on the settings page with 1-tap select all and clear controls.
 - Real `startGame()` invocation with comprehensive config validation and inline error display.
 
 #### 3. Privacy-Preserving Pass-the-Phone Role Reveal (`src/pages/RoleRevealPage.tsx`)
-- Implemented turn-based pass-the-phone sequence for 3 to 20 players.
-- Supported both reveal styles:
-  - **Tap to reveal** / tap to hide.
-  - **Press-and-hold to reveal** / release to hide.
-- Isolated player information using `getPlayerPrivateInfo` so no subsequent player or onlooker can view previous player roles.
-- Intermediary "Pass the phone to [Next Player]" privacy gate screen between players.
+- Turn-based pass-the-phone sequence for 3 to 20 players.
+- Standard tap-to-reveal flow with privacy gate screens between players.
+- Isolated player information using `getPlayerPrivateInfo()`.
 
 #### 4. Discussion Screen with Privacy (`src/pages/DiscussionPage.tsx`)
 - Strictly conceals the secret word to prevent screen peeking.
-- Configurable countdown timer with real-time progress bar, pulse animation on final 10 seconds, and manual continue option.
-- Skip Word action (`skipWord()`) to replace controversial or unfamiliar words without revealing imposters.
-- Direct dual paths: **"Begin Voting →"** for formal voting or **"Skip Voting (Quick Verdict) →"** for consensus verdict.
+- Configurable countdown timer with real-time display and pause/resume controls.
+- Dual pathways: **"Start Voting →"** or **"Skip Voting (Quick Verdict)"**.
 
 #### 5. Pass-the-Phone Voting Screen (`src/pages/VotingPage.tsx`)
-- Private turn-by-turn voter sequence with confirmation gates ("Hand phone to [Player]").
+- Private turn-by-turn voter sequence with confirmation gates.
 - Real `submitVote(voterId, targetId)` dispatch with duplicate vote prevention.
 - Automatic transition on last voter via `finishVoting()` to vote resolution and results.
 
@@ -167,40 +163,83 @@
 - Reveals actual secret word, imposter identity, and eliminated player.
 - Dynamic vote tally listing all votes descending, highlighting the eliminated player.
 - Clean summary card when round was resolved via Quick Verdict.
-- Context-aware footer buttons: "Next Round (Round X of Y)", "View Leaderboard", "Play Again", and "Back to Home".
 
 #### 7. Quick Verdict Consensus Screen (`src/pages/QuickVerdictPage.tsx`)
 - Real `quickVerdict(true)` (caught) routing directly to Results.
 - Real `quickVerdict(false)` (escaped) displaying dramatic imposter escape card with real player avatar, secret word, clue, and category.
-- Session-aware next round and leaderboard navigation.
 
 #### 8. Session Leaderboard (`src/pages/ScorePage.tsx`)
 - Real session score tracking via `getLeaderboard(state.players, state.scores)`.
 - Ranked list with 🏆 trophy styling for 1st place and point tallies.
-- Session round progress (`Round X of Y` / `Session Complete`).
-- Continuation to next round or rematch.
+- Session round progress tracking.
+
+---
+
+## Phase 4 — Settings, custom words, and persistence ✅ COMPLETE
+
+**Completed:** 2026-10-24
+
+### What was done
+
+#### 1. Versioned Local Storage Engine (`src/storage/keys.ts`, `src/storage/localStorage.ts`)
+- Typed storage keys prefixed with `imposter_` and versioned with `v1`.
+- Safe JSON serialization and deserialization with corruption recovery (graceful fallback to defaults without throwing or crashing).
+- Scoped storage clearance (`clearAllStorage()`) that selectively wipes app keys without disturbing other site data.
+- Domain-specific persistent storage methods for:
+  - Settings (`loadStoredSettings`, `saveStoredSettings`)
+  - Player rosters (`loadStoredPlayers`, `saveStoredPlayers`)
+  - Preferences (`loadStoredPreferences`, `saveStoredPreferences`)
+  - Lifetime game statistics (`loadStoredStats`, `saveStoredStats`, `recordRoundCompletion`, `recordGameCompletion`)
+  - Custom categories and words (`loadStoredCustomCategories`, `saveStoredCustomCategories`, `loadStoredCustomWords`, `saveStoredCustomWords`)
+
+#### 2. Settings & Player Persistence (`src/hooks/useGame.tsx`)
+- Player names entered in Step 2 are automatically remembered across page reloads and rematches.
+- Configured game settings (imposter count, imposter mode, timer toggle, duration, game mode, enabled categories) persist across browser sessions.
+- Game state initializes on page load using persisted players and settings.
+
+#### 3. Custom Words & Categories Management UI (`src/pages/CustomWordsPage.tsx`)
+- Multi-tab management interface:
+  - **Categories Tab**: View custom categories, see live word count badges, create new categories (name, description, slug ID), and delete categories.
+  - **Words Tab**: View all custom words with hints and category pills, add new secret words with hints, optional related words, and difficulty levels, inline edit existing custom words, and delete words.
+  - **Import / Export Tab**:
+    - **Export**: One-click download of `imposter-custom-words.json` or copy JSON payload to clipboard.
+    - **Import**: Upload `.json` file or paste JSON string into textarea. Full schema validation detects missing required fields and formatting errors without silently overwriting existing entries.
+- Custom categories and words are seamlessly merged with built-in words in `allWords` and `allCategories`, making them immediately available in game rounds!
+
+#### 4. User Preferences & Lifetime Statistics (`src/pages/PreferencesPage.tsx`)
+- **Accessibility & Display Preferences**:
+  - `Reduce motion` toggle with immediate application to `document.documentElement` (`data-reduced-motion="true"`).
+  - `Sound effects` and `Haptic feedback` toggles.
+- **Lifetime Game Statistics**:
+  - Automatically records rounds played, total games completed, imposter wins, regular player wins, imposter win rate percentage, and last played timestamp.
+  - Unobtrusive statistics pill on Home page hero.
+  - "Reset Stats" action.
+- **Storage & Reset Management**:
+  - "Factory Reset (Clear All Storage)" action with confirmation dialog.
+  - "Reset Settings Only" action.
 
 ### Verified & Tested
 
 - `npm run typecheck` — ✅ 0 TypeScript errors.
-- `npm test` — ✅ **51/51 tests passing** across 3 suites:
+- `npm test` — ✅ **67/67 tests passing** across 4 test suites:
   - `src/test/smoke.test.ts` (6 tests)
   - `src/test/gameEngine.test.ts` (39 tests)
-  - `src/test/playableGame.test.ts` (6 comprehensive end-to-end integration tests):
-    - Full 3-player playthrough (minimum scale) with formal voting and tie resolution.
-    - Full 4-player playthrough with Quick Verdict (caught & escaped flows).
-    - Full 10-player multi-round session across 3 consecutive rounds with cumulative score tracking and leaderboard.
-    - Full 20-player playthrough (maximum scale) verifying performance, role distribution (3 imposters, 17 regulars), and unanimous vote tally.
-    - Mid-round Skip Word action updating roles and secret word cleanly.
-- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 83 modules, 47.82 kB CSS, 233.04 kB JS).
-- Git repository synced: `https://github.com/adithyananil19/impostermalayalam.git`.
+  - `src/test/playableGame.test.ts` (6 integration tests)
+  - `src/test/persistence.test.ts` (16 comprehensive storage and persistence tests):
+    - Wrapper serialization, corruption recovery, and scoped clearing.
+    - Settings and player roster persistence with whitespace/empty filtering.
+    - User preferences and lifetime round/game accumulation.
+    - Custom category and word persistence.
+    - Structured export building with versioning and timestamps.
+    - JSON import validation: syntax checks, missing required fields, and safe merging.
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 86 modules transformed, 51.87 kB CSS, 273.71 kB JS in 978ms).
+- Dev server running on `0.0.0.0:5173` for cross-device phone testing (`http://192.168.1.5:5173/`).
 
 ---
 
 ## What has NOT been done yet
 
-- Phase 4: Settings persistence, custom word management, localStorage — **pending approval**.
-- Phase 5: Complete word bank (all 171+ entries across 11 categories) — pending.
+- Phase 5: Complete word bank (171+ entries across 11 categories) — **pending approval**.
 - Phase 6: PWA, offline support, accessibility QA — pending.
 - Phase 7: Deployment — pending.
 - Phase 8: Online multiplayer — pending.
