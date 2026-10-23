@@ -17,8 +17,8 @@
 ### Verified
 
 - `npm run typecheck` — ✅ 0 errors
-- `npm test` — ✅ 5/5 tests passing
-- `npm run build` — ✅ production build succeeded (76 modules, 63 KB gzip)
+- `npm test` — ✅ 6/6 tests passing
+- `npm run build` — ✅ production build succeeded (76 modules, 65 KB gzip)
 
 ---
 
@@ -28,56 +28,42 @@
 
 ### What was done
 
-#### Design system
+#### Design system & Aesthetics
 
-- CSS custom properties defined in `src/styles/globals.css`:
-  - Background `#101110`, Surface `#191B19`, Text `#F3F3EF`, Accent `#C6F36A`, Danger `#F26969`.
-  - Consistent radius (8–20px), spacing, and transition variables.
-  - Reduced-motion support via `@media (prefers-reduced-motion: reduce)`.
-  - Visible `:focus-visible` outlines in accent colour.
-  - Custom scrollbar styling.
+- Elevated typography: `Space Grotesk` (display headings & titles), `Plus Jakarta Sans` (body & UI), `JetBrains Mono` (numbers, timer, tags).
+- Atmospheric dark backdrop with subtle radial glows (`#0D0F0D`).
+- Modern micro-borders with subtle inner highlights and glowing lime accents.
 
-#### Shared components
+#### Streamlined Setup Flow
 
-| Component | Description |
-|---|---|
-| `Button` | 4 variants (primary/secondary/ghost/danger), 3 sizes, fullWidth, disabled state |
-| `Card` | Clickable/selected states, accessible `role="button"` |
-| `PageLayout` | Sticky header, scrollable main, sticky footer; max-width centred |
-| `BackButton` | Icon + label, navigate(-1) or to explicit route |
-| `Badge` | 5 colour variants for labels |
-| `Divider` | Plain or labelled |
-| `Toggle` | Accessible checkbox-backed toggle switch |
+1. **Step 1: Player Count Selector (`/new-game`)**:
+   - Giant tactile number counter with stepper buttons and quick presets (3 to 20 players).
+   - Dynamic party guidance banner based on player count.
+2. **Step 2: Player Names & Malayalee Autofill (`/players`)**:
+   - Generates exact player slots selected in Step 1.
+   - **`🎲 Fill with Malayalee Names`** button for instant 1-tap authentic name population without duplicates.
+   - Live name validation (prevents duplicates, requires all names filled).
+3. **Step 3: All-in-One Expanded Settings (`/settings`)**:
+   - **Game Mode Selection**: Single Round (Active) vs Multiple Rounds (🔒 Locked with "Coming in Phase 3" badge).
+   - Imposter configuration (count stepper + information mode).
+   - Discussion timer & duration controls.
+   - Role reveal style (Tap vs Hold).
+   - Voting outcome rule (Reveal & End vs Eliminate & Continue).
+   - **Embedded Category Selector**: Select/deselect categories right on the settings page with 1-tap Select All and Clear controls.
+   - "Start Game" directly begins the match!
 
-#### Screens built (13 total)
+#### Gameplay Screens
 
-| Screen | Route | Status | Notes |
-|---|---|---|---|
-| Home | `/` | ✅ Full UI | Logo, CTA, subactions |
-| New Game | `/new-game` | ✅ Full UI | Setup step cards |
-| Player Entry | `/players` | ✅ Full UI | Name validation, add/remove |
-| Category Selection | `/categories` | ✅ Full UI | Cards, Select All/Clear |
-| Game Settings | `/settings` | ✅ Full UI | Imposter count, mode, timer, etc. |
-| Role Reveal | `/reveal` | ✅ UI placeholder | Pass-the-phone layout |
-| Discussion | `/discussion` | ✅ Full UI | Working timer; **secret word hidden for privacy** |
-| Quick Verdict | `/quick-verdict` | ✅ Full UI | Skip voting: Yes (caught) or No (reveal imposter escape) |
-| Voting | `/voting` | ✅ UI with mock players | Single selection, confirmation gate |
-| Results | `/results` | ✅ UI with mock data | Outcome banner, word reveal, vote tally |
-| Score | `/score` | ✅ UI with mock leaderboard | Multi-round points rank |
-| Custom Words | `/custom-words` | ✅ UI placeholder | Empty state & action |
-| Preferences | `/preferences` | ✅ UI | Accessibility toggle, app info |
-
-#### Navigation
-
-- React Router v6 with HashRouter (works without a server for file:// preview).
-- All screen changes use `navigate()` — every button navigates or is clearly labelled.
-- Back buttons on all secondary screens.
+- **Discussion Screen (`/discussion`)**: Secret word hidden for privacy, live discussion timer, and **"Skip Voting (Quick Verdict)"** shortcut.
+- **Quick Verdict Screen (`/quick-verdict`)**: Yes (Caught -> results) or No (Got Away -> instant imposter escape reveal).
+- **Voting Screen (`/voting`)**: Player avatar cards with single-vote confirmation gate.
+- **Results Screen (`/results`)**: Outcome celebration, secret word reveal, and vote breakdown.
 
 ### Verified
 
 - `npm run typecheck` — ✅ 0 TypeScript errors
-- `npm test` — ✅ 5/5 tests passing
-- `npm run build` — ✅ production build (`tsc && vite build`), 76 modules, 63 KB gzip
+- `npm test` — ✅ 6/6 tests passing
+- `npm run build` — ✅ production build (`tsc && vite build`), 76 modules, 65.66 KB gzip
 - GitHub repository synchronized: `https://github.com/adithyananil19/impostermalayalam.git`
 
 ---
@@ -85,7 +71,7 @@
 ## What has NOT been done yet
 
 - Phase 2: Game engine, state machine, unit tests — **pending approval**.
-- Phase 3: Connect engine to UI (full playable game) — pending.
+- Phase 3: Connect engine to UI (full playable game & multi-round sessions) — pending.
 - Phase 4: Settings persistence, custom word management — pending.
 - Phase 5: Complete word bank (171+ entries) — pending.
 - Phase 6: PWA, offline support, accessibility QA — pending.
