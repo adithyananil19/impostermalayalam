@@ -2,9 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import Button from '../components/Button'
+import Badge from '../components/Badge'
 import styles from './DiscussionPage.module.css'
-
-const MOCK_WORD = 'Porotta'
 
 export default function DiscussionPage() {
   const navigate = useNavigate()
@@ -36,19 +35,62 @@ export default function DiscussionPage() {
   return (
     <PageLayout
       footer={
-        <Button variant="primary" size="lg" fullWidth onClick={() => navigate('/voting')}>
-          Start Voting
-        </Button>
+        <div className={styles.footerActions}>
+          <Button variant="primary" size="lg" fullWidth onClick={() => navigate('/voting')}>
+            Start Voting
+          </Button>
+          <Button
+            variant="secondary"
+            size="md"
+            fullWidth
+            onClick={() => navigate('/quick-verdict')}
+          >
+            Skip Voting (Quick Verdict)
+          </Button>
+        </div>
       }
     >
       <div className={styles.content}>
-        <div className={styles.stepBadge}>Discussion</div>
-        <div className={styles.wordBox}>
-          <p className={styles.wordLabel}>Secret word</p>
-          <p className={styles.word}>{MOCK_WORD}</p>
-          <p className={styles.wordHint}>
-            Players discuss — find the imposter before voting.
+        <div className={styles.topRow}>
+          <span className={styles.stepBadge}>Discussion</span>
+          <Badge variant="accent">Category: Food & Bakery</Badge>
+        </div>
+
+        <div className={styles.statusBox}>
+          <div className={styles.statusIcon} aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8 12H8.01M12 12H12.01M16 12H16.01"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <h2 className={styles.statusTitle}>Discussion in Progress</h2>
+          <p className={styles.statusHint}>
+            Take turns giving indirect clues and interrogating suspicious answers. Spot the imposter before voting!
           </p>
+          <div className={styles.shieldNotice}>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 1.5L2 4V7.5C2 11.2 4.6 14.6 8 15.5C11.4 14.6 14 11.2 14 7.5V4L8 1.5Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>Secret word is hidden for screen privacy</span>
+          </div>
         </div>
 
         <div className={styles.timerSection}>
@@ -72,7 +114,6 @@ export default function DiscussionPage() {
               Reset
             </Button>
           </div>
-          <p className={styles.timerNote}>Timer is optional. Phase 3 connects this to settings.</p>
         </div>
       </div>
     </PageLayout>

@@ -7,6 +7,7 @@ import CategorySelectionPage from './pages/CategorySelectionPage'
 import GameSettingsPage from './pages/GameSettingsPage'
 import RoleRevealPage from './pages/RoleRevealPage'
 import DiscussionPage from './pages/DiscussionPage'
+import QuickVerdictPage from './pages/QuickVerdictPage'
 import VotingPage from './pages/VotingPage'
 import ResultsPage from './pages/ResultsPage'
 import ScorePage from './pages/ScorePage'
@@ -25,6 +26,8 @@ export default function App() {
           <Route path="/settings" element={<GameSettingsPage />} />
           <Route path="/reveal" element={<RoleRevealPage />} />
           <Route path="/discussion" element={<DiscussionPage />} />
+          <Route path="/quick-verdict" element={<QuickVerdictPage />} />
+          <Route path="/verdict" element={<QuickVerdictPage />} />
           <Route path="/voting" element={<VotingPage />} />
           <Route path="/results" element={<ResultsPage />} />
           <Route path="/score" element={<ScorePage />} />
