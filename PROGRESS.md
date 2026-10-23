@@ -10,15 +10,15 @@
 - Created full folder structure: `src/components/`, `src/pages/`, `src/game/`, `src/data/`, `src/hooks/`, `src/storage/`, `src/styles/`, `src/types/`, `src/utils/`.
 - Created all project documents: `PRODUCT_SPEC.md`, `IMPLEMENTATION_PLAN.md`, `PROGRESS.md`, `TEST_PLAN.md`, `CONTENT_GUIDELINES.md`.
 - Added npm scripts: `dev`, `build`, `preview`, `test`, `test:watch`, `typecheck`.
-- Node.js v24.22.1 installed via winget.
+- Node.js v24.22.1 and Git v2.55.0 configured.
 - Dependencies installed: 293 packages.
-- Git is not installed on this machine; `git init` skipped.
+- Git repository connected and pushed to GitHub: `https://github.com/adithyananil19/impostermalayalam.git`.
 
 ### Verified
 
 - `npm run typecheck` — ✅ 0 errors
 - `npm test` — ✅ 5/5 tests passing
-- `npm run build` — ✅ production build succeeded (74 modules, 61 KB gzip)
+- `npm run build` — ✅ production build succeeded (76 modules, 63 KB gzip)
 
 ---
 
@@ -49,34 +49,36 @@
 | `Divider` | Plain or labelled |
 | `Toggle` | Accessible checkbox-backed toggle switch |
 
-#### Screens built (12 total)
+#### Screens built (13 total)
 
-| Screen | Route | Status |
-|---|---|---|
-| Home | `/` | ✅ Full UI |
-| New Game | `/new-game` | ✅ Full UI |
-| Player Entry | `/players` | ✅ Full UI with validation |
-| Category Selection | `/categories` | ✅ Full UI with mock data |
-| Game Settings | `/settings` | ✅ Full UI with all controls |
-| Role Reveal | `/reveal` | ✅ UI placeholder |
-| Discussion | `/discussion` | ✅ UI with working timer |
-| Voting | `/voting` | ✅ UI with mock players |
-| Results | `/results` | ✅ UI with mock data |
-| Score | `/score` | ✅ UI with mock leaderboard |
-| Custom Words | `/custom-words` | ✅ UI placeholder |
-| Preferences | `/preferences` | ✅ UI |
+| Screen | Route | Status | Notes |
+|---|---|---|---|
+| Home | `/` | ✅ Full UI | Logo, CTA, subactions |
+| New Game | `/new-game` | ✅ Full UI | Setup step cards |
+| Player Entry | `/players` | ✅ Full UI | Name validation, add/remove |
+| Category Selection | `/categories` | ✅ Full UI | Cards, Select All/Clear |
+| Game Settings | `/settings` | ✅ Full UI | Imposter count, mode, timer, etc. |
+| Role Reveal | `/reveal` | ✅ UI placeholder | Pass-the-phone layout |
+| Discussion | `/discussion` | ✅ Full UI | Working timer; **secret word hidden for privacy** |
+| Quick Verdict | `/quick-verdict` | ✅ Full UI | Skip voting: Yes (caught) or No (reveal imposter escape) |
+| Voting | `/voting` | ✅ UI with mock players | Single selection, confirmation gate |
+| Results | `/results` | ✅ UI with mock data | Outcome banner, word reveal, vote tally |
+| Score | `/score` | ✅ UI with mock leaderboard | Multi-round points rank |
+| Custom Words | `/custom-words` | ✅ UI placeholder | Empty state & action |
+| Preferences | `/preferences` | ✅ UI | Accessibility toggle, app info |
 
 #### Navigation
 
 - React Router v6 with HashRouter (works without a server for file:// preview).
-- All screen changes use `navigate()` — every button navigates or is clearly labelled as a placeholder.
+- All screen changes use `navigate()` — every button navigates or is clearly labelled.
 - Back buttons on all secondary screens.
 
 ### Verified
 
 - `npm run typecheck` — ✅ 0 TypeScript errors
 - `npm test` — ✅ 5/5 tests passing
-- `npm run build` — ✅ production build (`tsc && vite build`), 74 modules, 61 KB gzip
+- `npm run build` — ✅ production build (`tsc && vite build`), 76 modules, 63 KB gzip
+- GitHub repository synchronized: `https://github.com/adithyananil19/impostermalayalam.git`
 
 ---
 
@@ -89,17 +91,16 @@
 - Phase 6: PWA, offline support, accessibility QA — pending.
 - Phase 7: Deployment — pending.
 - Phase 8: Online multiplayer — pending.
-- Git repository: `git` is not installed on this machine. Checkpoint is tracked by file state only.
 
 ---
 
 ## How to run locally
 
 ```bash
-# Install (already done)
+# Install
 npm install
 
-# Development server (run outside sandbox for browser access)
+# Development server
 npm run dev
 
 # Production build
