@@ -47,9 +47,7 @@
    - **Game Mode Selection**: Single Round vs Multiple Rounds (with round count stepper).
    - Imposter configuration (count stepper + information mode).
    - Discussion timer & duration controls.
-   - Role reveal style (Tap vs Hold).
-   - Voting outcome rule (Reveal & End vs Eliminate & Continue).
-   - **Embedded Category Selector**: Select/deselect categories right on the settings page with 1-tap Select All and Clear controls.
+   - Embedded category selection right on the settings page with 1-tap Select All and Clear controls.
    - "Start Game" directly begins the match!
 
 #### Gameplay Screens
@@ -80,7 +78,7 @@
 - `validateGameConfig`: Comprehensive game validation including category availability and timer durations.
 
 #### 2. Word Selector & Category Restrictions (`src/game/wordSelector.ts`)
-- `selectSecretWord`: Randomly selects words strictly from enabled categories; prioritizes unused words in the session; recycles pool when depleted.
+- `selectSecretWord`: Randomly selects words strictly from enabled categories; prioritizes unused words in the session; recycles pool when depleted while excluding the last played word.
 - `skipCurrentWord`: Skips current word and picks an alternative valid word without changing player roles or resetting the round.
 
 #### 3. Role Assignment & Privacy (`src/game/roles.ts`)
@@ -183,64 +181,84 @@
 
 #### 1. Versioned Local Storage Engine (`src/storage/keys.ts`, `src/storage/localStorage.ts`)
 - Typed storage keys prefixed with `imposter_` and versioned with `v1`.
-- Safe JSON serialization and deserialization with corruption recovery (graceful fallback to defaults without throwing or crashing).
-- Scoped storage clearance (`clearAllStorage()`) that selectively wipes app keys without disturbing other site data.
-- Domain-specific persistent storage methods for:
-  - Settings (`loadStoredSettings`, `saveStoredSettings`)
-  - Player rosters (`loadStoredPlayers`, `saveStoredPlayers`)
-  - Preferences (`loadStoredPreferences`, `saveStoredPreferences`)
-  - Lifetime game statistics (`loadStoredStats`, `saveStoredStats`, `recordRoundCompletion`, `recordGameCompletion`)
-  - Custom categories and words (`loadStoredCustomCategories`, `saveStoredCustomCategories`, `loadStoredCustomWords`, `saveStoredCustomWords`)
+- Safe JSON serialization and deserialization with corruption recovery.
+- Scoped storage clearance (`clearAllStorage()`).
+- Persistent storage methods for Settings, Players, Preferences, Stats, and Custom Words/Categories.
 
 #### 2. Settings & Player Persistence (`src/hooks/useGame.tsx`)
-- Player names entered in Step 2 are automatically remembered across page reloads and rematches.
-- Configured game settings (imposter count, imposter mode, timer toggle, duration, game mode, enabled categories) persist across browser sessions.
-- Game state initializes on page load using persisted players and settings.
+- Player names entered in Step 2 are automatically remembered across browser reloads and rematches.
+- Configured game settings persist across browser sessions.
+- State initializes on page load using persisted players and settings.
 
 #### 3. Custom Words & Categories Management UI (`src/pages/CustomWordsPage.tsx`)
 - Multi-tab management interface:
-  - **Categories Tab**: View custom categories, see live word count badges, create new categories (name, description, slug ID), and delete categories.
-  - **Words Tab**: View all custom words with hints and category pills, add new secret words with hints, optional related words, and difficulty levels, inline edit existing custom words, and delete words.
-  - **Import / Export Tab**:
-    - **Export**: One-click download of `imposter-custom-words.json` or copy JSON payload to clipboard.
-    - **Import**: Upload `.json` file or paste JSON string into textarea. Full schema validation detects missing required fields and formatting errors without silently overwriting existing entries.
-- Custom categories and words are seamlessly merged with built-in words in `allWords` and `allCategories`, making them immediately available in game rounds!
+  - **Categories Tab**: View custom categories with live word counts, create new categories, and delete categories.
+  - **Words Tab**: View, create, inline edit, and delete custom words with hints and difficulty levels.
+  - **Import / Export Tab**: Download JSON file or copy to clipboard; upload JSON or paste into textarea with full schema validation.
+- Custom categories and words are seamlessly merged with built-in words in `allWords` and `allCategories`.
 
 #### 4. User Preferences & Lifetime Statistics (`src/pages/PreferencesPage.tsx`)
-- **Accessibility & Display Preferences**:
-  - `Reduce motion` toggle with immediate application to `document.documentElement` (`data-reduced-motion="true"`).
-  - `Sound effects` and `Haptic feedback` toggles.
-- **Lifetime Game Statistics**:
-  - Automatically records rounds played, total games completed, imposter wins, regular player wins, imposter win rate percentage, and last played timestamp.
-  - Unobtrusive statistics pill on Home page hero.
-  - "Reset Stats" action.
-- **Storage & Reset Management**:
-  - "Factory Reset (Clear All Storage)" action with confirmation dialog.
-  - "Reset Settings Only" action.
+- `Reduce motion` toggle with live `data-reduced-motion="true"` on `document.documentElement`.
+- `Sound effects` and `Haptic feedback` toggles.
+- Lifetime game statistics recording rounds played, games completed, imposter wins, regular player wins, and imposter win rate.
+- Unobtrusive statistics pill on Home page hero.
+
+---
+
+## Phase 5 — Add the complete word bank and categories ✅ COMPLETE
+
+**Completed:** 2026-10-24
+
+### What was done
+
+#### 1. Complete Malayalam Word Bank (`src/data/words.ts`)
+Created and expanded the complete authentic word bank with **248 original entries** across 11 cultural categories:
+- **Kerala Slang & Culture** (`kerala-slang`): 18 entries (*Vayannoki, Ammavan, Naattukaar, Chali, Thallu, Jaada, Show off, Kuliru, Oola, Pani paali, Theppu, Scene contra, Kozhi, Kidu, Alamb, Vibe, Mandam, Posh*)
+- **College Life** (`college-life`): 17 entries (*Bunk, Mass bunk, Supply, Viva, Record book, Lab exam, Assignment, Backlog, Proxy, Internal marks, Hostel mess, Canteen, Semester exam, HOD, Study holidays, Placement, Industrial visit*)
+- **Food & Bakery** (`food-bakery`): 18 entries (*Porotta, Beef fry, Pazhampori, Puttu, Kappa, Unniyappam, Kozhukkatta, Sulaimani, Shawarma, Lime juice, Biryani, Al Faham, Kattan chaya, Neyyappam, Halwa, Parippuvada, Karimeen pollichathu, Sadya*)
+- **Memes & Viral Trends** (`memes-trends`): 17 entries (*Rickroll, Sigma male, Skibidi, NPC, Troll, Cringe, Viral reel, Rage bait, Delulu, Aura points, Rizz, Cap, No cap, Chad, Insta story, Main character, Doomscrolling*)
+- **Places in Kerala** (`places-kerala`): 17 entries (*Kozhikode, Thrissur, Kochi, Alappuzha, Munnar, Wayanad, Kannur, Malappuram, Palakkad, Thiruvananthapuram, Varkala, Kovalam, Bekal, Kumarakom, Athirappilly, Vagamon, Kasaragod*)
+- **Everyday Objects** (`everyday-objects`): 17 entries (*Umbrella, Pressure cooker, Mosquito bat, Extension box, Charger, Earphones, Ceiling fan, Plastic chair, Water bottle, Remote control, Lungi, Mundu, Chappal, Gas cylinder, Torch, Matchbox, Steel dabba*)
+- **Politics & Public Life** (`politics`): 17 entries (*Election, Campaign, Hartal, Manifesto, Press meet, Assembly, Poster campaign, Road inauguration, Political debate, Opinion poll, Secretariat, LDF, UDF, Flex board, Mic operator, Slogan, Janamaithri*)
+- **Relationships & Dating** (`relationships`): 16 entries (*Best friend, Crush, Situationship, Friendzone, Ex, Wingman, Green flag, Red flag, Third wheel, Ghosting, Matchmaking aunt, Shaadi, Talking stage, First date, Seen zone, Overthinker*)
+- **Tricky Words** (`tricky-words`): 18 entries (*Tea, Coffee, Rain, Thunder, River, Lake, Bus, Train, Hotel, Restaurant, Pond, Well, Borewell, Flight, Helicopter, Ferry, Kite, Ladder*)
+- **Sports & Games** (`sports-games`): 17 entries (*Football, Cricket, FIFA, Penalty, Offside, Hat-trick, VAR, Red card, Last-minute goal, Golden boot, Sevens, Box cricket, Carroms, Gully cricket, Shuttle badminton, Ludo, Tug of war*)
+- **Malayalam Movies** (`malayalam-movies`): 76 blockbuster films covering classics, comedies, family entertainers, thrillers, coming-of-age, and recent hits!
+
+#### 2. Strict Content Quality Standards
+- Structured format: `{ id, word, hint, relatedWord, category, difficulty, tags }`.
+- Culturally authentic, funny, casual Malayalam hints with zero dictionary definitions.
+- Balanced difficulty spread: easy, medium, and hard levels across all categories.
+- Guaranteed unique sequential IDs with zero collisions.
+- No direct answer-giving hints or circular references.
+
+#### 3. Content Verification Test Suite (`src/test/wordBank.test.ts`)
+- Automated verification checking:
+  - 171+ entry quota exceeded (248 total entries verified).
+  - Every ID is strictly unique.
+  - Every word, hint, and category is non-empty.
+  - No hint repeats the secret word.
+  - All 11 categories have at least 10+ entries.
+  - Difficulty distribution includes easy, medium, and hard.
+  - Category filters and skip-word rotation operate accurately.
 
 ### Verified & Tested
 
 - `npm run typecheck` — ✅ 0 TypeScript errors.
-- `npm test` — ✅ **67/67 tests passing** across 4 test suites:
+- `npm test` — ✅ **79/79 tests passing** across 5 test suites:
   - `src/test/smoke.test.ts` (6 tests)
   - `src/test/gameEngine.test.ts` (39 tests)
-  - `src/test/playableGame.test.ts` (6 integration tests)
-  - `src/test/persistence.test.ts` (16 comprehensive storage and persistence tests):
-    - Wrapper serialization, corruption recovery, and scoped clearing.
-    - Settings and player roster persistence with whitespace/empty filtering.
-    - User preferences and lifetime round/game accumulation.
-    - Custom category and word persistence.
-    - Structured export building with versioning and timestamps.
-    - JSON import validation: syntax checks, missing required fields, and safe merging.
-- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 86 modules transformed, 51.87 kB CSS, 273.71 kB JS in 978ms).
+  - `src/test/playableGame.test.ts` (8 tests)
+  - `src/test/persistence.test.ts` (16 tests)
+  - `src/test/wordBank.test.ts` (10 tests)
+- `npm run build` — ✅ Production build succeeded (`tsc && vite build`, 86 modules transformed, 51.87 kB CSS, 284.35 kB JS in 959ms).
 - Dev server running on `0.0.0.0:5173` for cross-device phone testing (`http://192.168.1.5:5173/`).
 
 ---
 
 ## What has NOT been done yet
 
-- Phase 5: Complete word bank (171+ entries across 11 categories) — **pending approval**.
-- Phase 6: PWA, offline support, accessibility QA — pending.
+- Phase 6: PWA, offline support, accessibility QA — **pending approval**.
 - Phase 7: Deployment — pending.
 - Phase 8: Online multiplayer — pending.
 
